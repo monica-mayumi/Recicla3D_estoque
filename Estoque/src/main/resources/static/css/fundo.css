@@ -1,0 +1,18 @@
+body{
+background-color:#757575 ;
+}
+@media only screen and (min-width: 993px){
+	.container{
+	width: 80%;
+	}
+}
+p{font-family:"Times New Roman", Times, serif;
+}
+h3{font-family:"Times New Roman", Times, serif;
+color: grey lighten-4;
+
+}
+h5{
+	color:white
+	
+}
