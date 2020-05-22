@@ -7,6 +7,7 @@
 <html>
 <meta charset="ISO-8859-1">
 	<%@ include file="../base/header.jsp"%>
+	<!--  -->
 	<body>
 		<div class="container"> 
 			<div class="row">
