@@ -7,39 +7,31 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 
-@Entity(name = "t_item_pedido_compra")
+@Entity(name = "t_pedido_compra_itens")
 public class ItemPedidoCompra {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "item_pedido_compra_id")
-	private int id;
+	private Long id;
 
 	@ManyToOne
-	//@Column(name = "item_pedido_compra")
-	@JoinColumn(name="item_pedido_compra") //,referencedColumnName="pedido_compra_itens_pedido_compra_id")
 	private PedidoCompra pedido;
 
 	@ManyToOne
-	//@Column(name = "item_pedido_compra_matr_prim_id")
-	@JoinColumn(name="item_pedido_compra_matr_prim_id",referencedColumnName="matr_prim_id")
 	private MateriaPrima produto;
 
-	@Column(name = "item_pedido_compra_quantidade")
-	private Long quantidade;
+	private Double quantidade;
 
-	@Column(name = "item_pedido_compra_valor_unitario")
+	@Column(name = "preco_unitario")
 	private BigDecimal precoUnitario;
 
-	public int getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
@@ -59,11 +51,11 @@ public class ItemPedidoCompra {
 		this.produto = produto;
 	}
 
-	public Long getQuantidade() {
+	public Double getQuantidade() {
 		return quantidade;
 	}
 
-	public void setQuantidade(Long quantidade) {
+	public void setQuantidade(Double quantidade) {
 		this.quantidade = quantidade;
 	}
 

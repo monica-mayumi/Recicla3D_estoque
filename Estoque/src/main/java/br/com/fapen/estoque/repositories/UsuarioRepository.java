@@ -10,11 +10,9 @@ import org.springframework.transaction.annotation.Transactional;
 
 import br.com.fapen.estoque.models.Usuario;
 
-public interface UsuarioRepository  extends JpaRepository<Usuario, Integer>{
-	public Usuario findByLogin(String username);
-	
-	//public Usuario findByUsername(String username);
-	public Usuario findByid(Integer id);
+public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
+
+	public Usuario findByUsername(String username);
 	public Usuario findByEmail(String email);
 	public Usuario findByHash(String hash);
 	public Page<Usuario> findByNomeCompletoContainingIgnoreCase(String nomeCompleto, Pageable paginacao);
@@ -22,6 +20,5 @@ public interface UsuarioRepository  extends JpaRepository<Usuario, Integer>{
 	@Transactional
 	@Modifying(clearAutomatically = true)
 	@Query(value = "UPDATE t_usuario SET senha = :senha, hash = :hash WHERE id = :id", nativeQuery = true)
-	public void alterarSenha(@Param("senha") String novaSenha, @Param("hash") String hash, @Param("id") Integer integer);
-
+	public void alterarSenha(@Param("senha") String novaSenha, @Param("hash") String hash, @Param("id") Long id);
 }

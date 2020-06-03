@@ -10,8 +10,6 @@ import org.springframework.context.support.ReloadableResourceBundleMessageSource
 public class EstoqueApplication {
 
 	public static void main(String[] args) {
-		
-		System.out.println("AOHHHAAAAAA");
 		SpringApplication.run(EstoqueApplication.class, args);
 		
 	}

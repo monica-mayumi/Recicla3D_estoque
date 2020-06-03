@@ -34,7 +34,7 @@ import br.com.fapen.estoque.service.UsuarioService;
 import br.com.fapen.estoque.validation.UsuarioFormValidator;
 
 @Controller
-@RequestMapping(value = "/usuarios")
+@RequestMapping(value = "/usuario")
 public class UsuarioController {
 
 	@Autowired
@@ -57,7 +57,7 @@ public class UsuarioController {
 		binder.setValidator(usuarioFormValidator);
 	}
 
-	@RequestMapping(value = "/novoUsuario", method = RequestMethod.GET, name = "novoUsuarioUrl")
+	@RequestMapping(value = "/novoU", method = RequestMethod.GET, name = "novoUsuarioUrl")
 	public ModelAndView formulario(UsuarioForm usuarioForm) {
 		ModelAndView mav = new ModelAndView("usuario/form");
 		mav.addObject("listaDePerfis", perfilRep.findAll());
@@ -96,7 +96,7 @@ public class UsuarioController {
 	}
 
 	@RequestMapping(value = "{id}/edit", name = "alterarUsuarioUrl")
-	public ModelAndView alterar(@PathVariable Integer id, Model model) {
+	public ModelAndView alterar(@PathVariable Long id, Model model) {
 
 		Usuario usuarioEncontrado = usuarioRep.findById(id).get();
 
@@ -108,7 +108,7 @@ public class UsuarioController {
 	}
 
 	@RequestMapping(value = "/{id}", name = "detalharUsuarioUrl")
-	public ModelAndView detalhar(@PathVariable Integer id) {
+	public ModelAndView detalhar(@PathVariable Long id) {
 
 		Usuario usuarioVindoDoBanco = usuarioRep.findById(id).get();
 		ModelAndView mav = new ModelAndView("usuario/detalhe");
@@ -117,7 +117,7 @@ public class UsuarioController {
 	}
 
 	@RequestMapping(value = "/{id}/delete", method = RequestMethod.POST, name = "excluirUsuarioUrl")
-	public String excluir(@PathVariable Integer id, RedirectAttributes atributos) {
+	public String excluir(@PathVariable Long id, RedirectAttributes atributos) {
 
 		Usuario usuarioEncontrado = usuarioRep.findById(id).get();
 
@@ -135,7 +135,7 @@ public class UsuarioController {
 	public ModelAndView perfil(Principal principal) {
 
 		ModelAndView mav = new ModelAndView("usuario/perfil");
-		Usuario usuarioLogado = usuarioRep.findByLogin(principal.getName());
+		Usuario usuarioLogado = usuarioRep.findByUsername(principal.getName());
 		mav.addObject("usuario", usuarioLogado);
 
 		return mav;
@@ -145,7 +145,7 @@ public class UsuarioController {
 	public String alterarFotoPerfil(MultipartFile foto, Principal principal) {
 
 		String caminhoDaFoto = gravadorDeArquivos.salvarEmDisco(foto);
-		Usuario usuarioEncontrado = usuarioRep.findByLogin(principal.getName());
+		Usuario usuarioEncontrado = usuarioRep.findByUsername(principal.getName());
 		usuarioEncontrado.setCaminhoFoto(caminhoDaFoto);
 		usuarioRep.save(usuarioEncontrado);
 

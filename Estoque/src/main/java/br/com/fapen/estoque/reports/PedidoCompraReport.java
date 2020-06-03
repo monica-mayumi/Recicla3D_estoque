@@ -64,8 +64,8 @@ public class PedidoCompraReport {
 
 			// Dados do Pedido
 			Map<String, String> cabecalho = new LinkedHashMap<String, String>();
-			cabecalho.put("Fornecedor", pedidoSendoImpresso.getFornecedor().getNomeEmpresa());
-			cabecalho.put("Contato", pedidoSendoImpresso.getFornecedor().getTelefoneComercial());
+			cabecalho.put("Fornecedor", pedidoSendoImpresso.getFornecedor().getRazaoSocial());
+			cabecalho.put("Contato", pedidoSendoImpresso.getFornecedor().getNomeResponsavel());
 			cabecalho.put("Data Entrega",
 					pedidoSendoImpresso.getDataEntrega().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
 			cabecalho.put("Condição de Pagamento", pedidoSendoImpresso.getCondicaoPagamento().getDisplayValue());

@@ -6,40 +6,32 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 import br.com.fapen.estoque.service.UsuarioService;
 
 @EnableWebSecurity
-public class EstoqueSecurityConfig extends WebSecurityConfigurerAdapter {
-
-	@Autowired
-	private UserDetailsService usuarioService;
+public class EstoqueSecurityConfig extends WebSecurityConfigurerAdapter{
 	
 	@Autowired
 	private UsuarioService servicoDeUsuarios;
-
+	
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-		auth.userDetailsService(usuarioService).passwordEncoder(new BCryptPasswordEncoder());
+		auth.userDetailsService(servicoDeUsuarios).passwordEncoder(new BCryptPasswordEncoder());	
 		
-		auth.userDetailsService(servicoDeUsuarios).passwordEncoder(new BCryptPasswordEncoder());
-		
-		System.out.println("Passou aqui !!!!!");
 		//Cria o usuario Admin, se não existir
-		if (! servicoDeUsuarios.userExists("Admin")) {
+		System.out.println("passou aquiiii!!!");
+		if (!servicoDeUsuarios.userExists("admin")) {
 			servicoDeUsuarios.addAdminUser();
 		}
-
 	}
-
 
 	@Override
     protected void configure(HttpSecurity http) throws Exception {
 		http.authorizeRequests()
-		     .antMatchers("/usuarios/**").permitAll()
+		     
 			.antMatchers("/home").permitAll()
 			.antMatchers("/sobre").permitAll()
 			.antMatchers("/contato").permitAll()
@@ -50,7 +42,7 @@ public class EstoqueSecurityConfig extends WebSecurityConfigurerAdapter {
 			.antMatchers("/js/**").permitAll()
 			.antMatchers("/img/**").permitAll()					
 			.antMatchers(HttpMethod.POST, "/**/delete").hasAnyRole("ADMIN", "GERENTE")
-			//.antMatchers("/usuarios/**").hasRole("ADMIN")
+			.antMatchers("/usuarios/**").hasRole("ADMIN")
 			.anyRequest().authenticated()
 			.and()
 			.formLogin().loginPage("/login").defaultSuccessUrl("/home").permitAll()

@@ -108,8 +108,8 @@
 								</div>
 							</div>							
 							<div class="card-action">
-								<input class="btn-small green" type="submit" value="Salvar">
-								<a href="${s:mvcUrl('listarPedidoCompraUrl').build()}" class="btn-small orange">voltar</a>
+								<input class="btn-small blue darken-2" type="submit" value="Salvar">
+								<a href="${s:mvcUrl('listarPedidoCompraUrl').build()}" class="btn-small red darken-2">voltar</a>
 							</div>
 						</div>
 					

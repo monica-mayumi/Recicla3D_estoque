@@ -5,24 +5,18 @@ import javax.persistence.Embeddable;
 
 @Embeddable
 public class Endereco {
-	@Column(name = "fornec_cep",length=10)
+
+	@Column(length = 8)
 	private String cep;
-	@Column(name = "fornec_endereco",length=10)
 	private String endereco;
 	
-
-	@Column(name = "fornec_numero",length=10)
+	@Column(length = 10)
 	private String numero;
-	
-	@Column(name = "fornec_complemento",length=10)
 	private String complemento;
-	
-	@Column(name = "fornec_bairro",length=10)
 	private String bairro;
-	@Column(name = "fornec_municipio",length=10)
 	private String municipio;
 	
-	@Column(name = "fornec_uf",length = 2)
+	@Column(length = 2)
 	private String uf;
 
 	public String getCep() {
@@ -30,7 +24,7 @@ public class Endereco {
 	}
 
 	public void setCep(String cep) {
-		this.cep = cep;
+		this.cep = cep.replaceAll("[^0-9]", "");
 	}
 
 	public String getEndereco() {
@@ -80,7 +74,5 @@ public class Endereco {
 	public void setUf(String uf) {
 		this.uf = uf;
 	}
-	
-	
 
 }

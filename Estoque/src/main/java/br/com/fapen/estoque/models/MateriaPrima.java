@@ -1,61 +1,49 @@
 package br.com.fapen.estoque.models;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 
-@Entity(name = "t_matr_prim")
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.format.annotation.DateTimeFormat.ISO;
+
+@Entity(name = "t_produto")
 public class MateriaPrima {
+
 	@Id
- 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "matr_prim_id")
-	private Integer id;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
 
-	@Column(name = "matr_prim_descricao")
 	private String descricao;
-	
-	@Column(name = "matr_prim_custo_unitario")
+
+	@Column(name = "custo_unitario")
 	private BigDecimal custoUnitario;
-	
-    @Column(name="matr_prim_categoria",length=10)
+
+	@Column(name = "preco_venda")
+	private BigDecimal precoVenda;
+
+	@Column(length = 10)
 	private String categoria;
-    
-    //@Column(name="matr_prim_fornec_id")
-    //private Integer fornecedor;
-/*
- *    CONSTRAINT fk_t_matr_prim FOREIGN KEY (matr_prim_fornec_id)
-        REFERENCES public.t_fornecedor (fornec_id) MATCH SIMPLE
- 
-    @ManyToOne
-    @JoinColumn(name="matr_prim_fornec_id",
-    foreignKey = @ForeignKey(),
-    			referencedColumnName="fornec_id")   
-    */
-    
-    @ManyToOne
-    @JoinColumn(name="matr_prim_fornec_id",referencedColumnName="fornec_id")    
-    private Fornecedor fornecedor;
+	
+	@Column(name = "saldo_atual")
+	private Double saldoAtual;
 
-    public Fornecedor getFornecedor() {
-		return fornecedor;
-	}
-
-	public void setFornecedor(Fornecedor fornecedor) {
-		this.fornecedor = fornecedor;
-	}
-
-	/**/
-	public Integer getId() {
+	@DateTimeFormat(iso = ISO.DATE)
+	@Column(name = "data_validade")
+	private LocalDate validade;
+	
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
@@ -75,12 +63,36 @@ public class MateriaPrima {
 		this.custoUnitario = custoUnitario;
 	}
 
+	public BigDecimal getPrecoVenda() {
+		return precoVenda;
+	}
+
+	public void setPrecoVenda(BigDecimal precoVenda) {
+		this.precoVenda = precoVenda;
+	}
+
 	public String getCategoria() {
 		return categoria;
 	}
 
 	public void setCategoria(String categoria) {
 		this.categoria = categoria;
+	}
+
+	public Double getSaldoAtual() {
+		return saldoAtual;
+	}
+
+	public void setSaldoAtual(Double saldoAtual) {
+		this.saldoAtual = saldoAtual;
+	}
+
+	public LocalDate getValidade() {
+		return validade;
+	}
+
+	public void setValidade(LocalDate validade) {
+		this.validade = validade;
 	}
 
 }

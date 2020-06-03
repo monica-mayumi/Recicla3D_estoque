@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -24,44 +25,37 @@ import org.springframework.security.core.userdetails.UserDetails;
 @Entity(name = "t_usuario")
 public class Usuario implements UserDetails {
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 609928275369457081L;
-
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "usuario_id")
-	private Integer id;
+	private Long id;
 
-	@Column(name = "usuario_login", length = 45)
-	private String login;
+	@Column(name = "login", length = 45)
+	private String username;
 
-	@Column(name = "usuario_senha", updatable = false)
+	@Column(name = "senha", updatable = false)
 	private String password;
 
-	@Column(name = "usuario_nome_completo")
+	@Column(name = "nome_completo")
 	private String nomeCompleto;
 
 	@DateTimeFormat(iso = ISO.DATE)
-	@Column(name = "usuario_data_nascimento")
+	@Column(name = "data_nascimento")
 	private LocalDate dataNascimento;
 
-	
-	@Column(name = "usuario_cpf",length = 11 )
+	@Column(length = 11)
 	private String cpf;
 
-	@Column(name = "usuario_email",length = 100)
+	@Column(length = 100)
 	private String email;
 
-	@Column(name = "usuario_foto_perfil")
+	@Column(name = "foto_perfil")
 	private String caminhoFoto;
 
-	@Column(name = "usuario_hash",updatable = false)
+	@Column(updatable = false)
 	private String hash;
 
 	@ManyToMany(fetch = FetchType.EAGER)
-	@JoinTable(name = "t_usuario_perfil", joinColumns = @JoinColumn(name = "usuario_id"), inverseJoinColumns = @JoinColumn(name = "usuario_perfil_id"))
+	@JoinTable(name = "t_usuario_perfil", joinColumns = @JoinColumn(name = "usuario_id"), inverseJoinColumns = @JoinColumn(name = "perfil_id"))
 	private List<Perfil> authorities = new ArrayList<Perfil>();
 
 	public void setAuthorities(List<Perfil> authorities) {
@@ -73,20 +67,20 @@ public class Usuario implements UserDetails {
 		return this.authorities;
 	}
 
-	public Integer getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
 	public String getUsername() {
-		return login;
+		return username;
 	}
 
 	public void setUsername(String username) {
-		this.login = username;
+		this.username = username;
 	}
 
 	public String getPassword() {

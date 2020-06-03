@@ -1,13 +1,14 @@
 package br.com.fapen.estoque.controllers;
 
 import java.util.List;
-import java.util.Optional;
+import java.util.Optional;	
 
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.Validator;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,9 +19,10 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
 import br.com.fapen.estoque.models.MateriaPrima;
 import br.com.fapen.estoque.repositories.MateriaPrimaRepository;
-import br.com.fapen.estoque.validation.ProdutoValidator;
+import br.com.fapen.estoque.validation.MateriaPrimaValidator;
 
 @RestController
 @RequestMapping(value = "/api/produtos")
@@ -30,11 +32,11 @@ public class ProdutoApiController {
 	private MateriaPrimaRepository repProdutos;
 
 	@Autowired
-	private ProdutoValidator produtoValidator;
+	private Validator MateriaPrimaValidator;
 
 	@InitBinder
 	public void initBinder(WebDataBinder binder) {
-		binder.setValidator(produtoValidator);
+		binder.setValidator(MateriaPrimaValidator);
 	}
 
 	@GetMapping
@@ -43,7 +45,7 @@ public class ProdutoApiController {
 	}
 
 	@GetMapping("/{id}")
-	public ResponseEntity<MateriaPrima> buscarPorId(@PathVariable Integer id) {
+	public ResponseEntity<MateriaPrima> buscarPorId(@PathVariable Long id) {
 		Optional<MateriaPrima> prod = repProdutos.findById(id);
 		if (prod.isEmpty()) {
 			return new ResponseEntity<MateriaPrima>(HttpStatus.NOT_FOUND);
@@ -58,7 +60,7 @@ public class ProdutoApiController {
 	}
 
 	@PutMapping("/{id}")
-	public ResponseEntity<MateriaPrima> alterar(@PathVariable Integer id, @RequestBody MateriaPrima produto) {
+	public ResponseEntity<MateriaPrima> alterar(@PathVariable Long id, @RequestBody MateriaPrima produto) {
 		MateriaPrima prod = repProdutos.findById(id).get();
 		if (prod == null) {
 			return new ResponseEntity<MateriaPrima>(HttpStatus.NOT_FOUND);
@@ -68,7 +70,7 @@ public class ProdutoApiController {
 	}
 
 	@DeleteMapping("/{id}")
-	public ResponseEntity<MateriaPrima> excluir(@PathVariable Integer id) {
+	public ResponseEntity<MateriaPrima> excluir(@PathVariable Long id) {
 		MateriaPrima prod = repProdutos.findById(id).get();
 		if (prod == null) {
 			return new ResponseEntity<MateriaPrima>(HttpStatus.NOT_FOUND);

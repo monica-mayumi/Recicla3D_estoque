@@ -5,33 +5,41 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 
 import org.springframework.security.core.GrantedAuthority;
+
 @Entity(name = "t_perfil")
-public class Perfil  implements GrantedAuthority{
-	private static final long serialVersionUID = 1L;
+public class Perfil implements GrantedAuthority {
+
 	@Id
-	@Column(name = "perfil_id", length = 50)
+	@Column(name = "id_perfil", length = 45)
 	private String authority;
-	@Column(name = "descricao", length = 50)
+
 	private String descricao;
 
+	public Perfil() {
+	}
 
-	public void setAuthority(String authority) {
+	public Perfil(String authority, String descricao) {
 		this.authority = authority;
+		this.descricao = descricao;
 	}
 
 	@Override
 	public String getAuthority() {
-		// TODO Auto-generated method stub
-		return null;
+		return this.authority;
+	}
+
+	public String getDescricao() {
+		return descricao;
 	}
 
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
 	}
 
-	public String getDescricao() {
-		return descricao;
+	public void setAuthority(String authority) {
+		this.authority = authority;
 	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -41,6 +49,26 @@ public class Perfil  implements GrantedAuthority{
 		return result;
 	}
 
-	
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Perfil other = (Perfil) obj;
+		if (authority == null) {
+			if (other.authority != null)
+				return false;
+		} else if (!authority.equals(other.authority))
+			return false;
+		if (descricao == null) {
+			if (other.descricao != null)
+				return false;
+		} else if (!descricao.equals(other.descricao))
+			return false;
+		return true;
+	}
 
 }

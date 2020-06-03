@@ -6,7 +6,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import br.com.fapen.estoque.models.MateriaPrima;
 
-public interface MateriaPrimaRepository extends JpaRepository<MateriaPrima, Integer> {
-	//List<MateriaPrima> findByDescricaoOrderByDescricaoAsc(String descricao);
-	public Page<MateriaPrima>findByDescricaoContainingIgnoreCase(String descricao, Pageable paginacao);
+public interface MateriaPrimaRepository extends JpaRepository<MateriaPrima, Long> {
+
+	public Page<MateriaPrima> findByDescricaoContainingIgnoreCase(String descricao, Pageable paginacao);
+
 }

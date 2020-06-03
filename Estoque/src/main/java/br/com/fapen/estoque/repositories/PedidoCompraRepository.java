@@ -11,8 +11,7 @@ import br.com.fapen.estoque.models.PedidoCompra;
 
 public interface PedidoCompraRepository extends JpaRepository<PedidoCompra, Long> {
 	
-	//public Page<PedidoCompra> findByFornecedor_razaoSocialContainingIgnoreCase(String razaoSocial, Pageable paginacao);
-	public Page<PedidoCompra> findByFornecedor_NomeEmpresa(String nomeEmpresa , Pageable paginacao);
+	public Page<PedidoCompra> findByFornecedor_razaoSocialContainingIgnoreCase(String razaoSocial, Pageable paginacao);
 	public Page<PedidoCompra> findByStatus(StatusEnum status, Pageable paginacao);
 	public Page<PedidoCompra> findByDataEntregaBetween(LocalDate dataInicial, LocalDate DataFinal, Pageable paginacao);
 

@@ -32,7 +32,7 @@ public class LoginController {
 	private AlteraSenhaFormValidator alteraSenhaValidator;
 
 	@Autowired
-    private UsuarioService usuarioService;
+	private UsuarioService usuarioService;
 
 	@Autowired
 	private EmailService emailService;
@@ -49,7 +49,6 @@ public class LoginController {
 
 	@RequestMapping(value = "/login", method = RequestMethod.GET, name = "loginUrl")
 	public String login() {
-		System.out.println("HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHh");
 		return "login/logar";
 	}
 
@@ -66,11 +65,6 @@ public class LoginController {
 		}
 		System.out.println(request.getContextPath());
 
-		usuarioService.addAdminUser();
-		if(usuarioService.userExists("Admin")) {
-			System.out.println("ADMIN OK");
-		}
-		
 		// envia um email com o link para mudança de senha
 		Usuario user = usuarioService.loadUserByEmail(recupSenhaForm.getEmail());
 		emailService.enviarEmailRecupSenha(request, user);
@@ -108,4 +102,3 @@ public class LoginController {
 	}
 
 }
-

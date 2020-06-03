@@ -1,6 +1,7 @@
 package br.com.fapen.estoque.validation;
 
 import java.math.BigDecimal;
+import java.util.Collections;
 
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
@@ -36,7 +37,7 @@ public class PedidoCompraFormValidator implements Validator {
 			ValidationUtils.rejectIfEmptyOrWhitespace(errors, "itensPedidoCompra[" + i + "].quantidade", "campo.obrigatorio");
 			ValidationUtils.rejectIfEmptyOrWhitespace(errors, "itensPedidoCompra[" + i + "].precoUnitario", "campo.obrigatorio");
 
-			if (itemPedido.getQuantidade() != null    && itemPedido.getQuantidade().compareTo(0L) == 0) {
+			if (itemPedido.getQuantidade() != null && itemPedido.getQuantidade().compareTo(0d) == 0) {
 				errors.rejectValue("itensPedidoCompra[" + i + "].quantidade", "campo.obrigatorio");
 			}
 			if (itemPedido.getPrecoUnitario() != null && itemPedido.getPrecoUnitario().compareTo(BigDecimal.ZERO) == 0) {

@@ -1,111 +1,101 @@
 package br.com.fapen.estoque.controllers;
 
-import java.util.List;
-
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import br.com.fapen.estoque.models.Fornecedor;
 import br.com.fapen.estoque.repositories.FornecedorRepository;
 import br.com.fapen.estoque.repositories.Paginacao;
-
+import br.com.fapen.estoque.validation.FornecedorValidator;
 
 @Controller
+@RequestMapping(value = "/fornecedores")
 public class FornecedorController {
-	
+
 	@Autowired
-	FornecedorRepository repFornecedor;
-	@RequestMapping(value = "/novof", method = RequestMethod.GET , name="novoFornecedorUrl")
-	public String folder() {
-		
-		return "fornecedor/CadastroFornecedor";
+	private FornecedorRepository fornecedorRep;
+
+	@Autowired
+	private FornecedorValidator fornecedorValidador;
+
+	@InitBinder("fornecedor")
+	protected void init(WebDataBinder binder) {
+		binder.setValidator(fornecedorValidador);
 	}
-	
-	
-	@RequestMapping(value = "fornecedor/CadastroFornecedor", method = RequestMethod.POST, name = "salvaFornecedorUrl")
-	public String salvaNoBancoFornecedor(@Valid Fornecedor fornecedorQueSeraSalvo, BindingResult resultadoValidacao
-			, RedirectAttributes atributos)
-	{
-			/* validacao do cadastro if(resultadoValidacao.hasErrors()){
-			 * return fornecedor(fornecedorQueSeraSalvo)} */
-		
-		System.out.println("Estou salvando o Fornecedor");
-		System.out.println(fornecedorQueSeraSalvo.getNomeEmpresa());
-		System.out.println(fornecedorQueSeraSalvo.getFornecedorEmail());
-		System.out.println(fornecedorQueSeraSalvo.getCnpj());
-		System.out.println(fornecedorQueSeraSalvo.getTelefoneComercial());
-		//salvar no banco
-		repFornecedor.save(fornecedorQueSeraSalvo);
-		//atributos.addFlashAttribute("mensagemStatus", "Produto salvo com sucesso aeee");
-		//return "redirect:/listar";
-		return "redirect:/listarf";
+
+	@RequestMapping(value = "/novof", method = RequestMethod.GET, name = "novoFornecedorUrl")
+	public String formulario(Fornecedor fornecedor) {
+		return "fornecedor/form";
 	}
-	// Listar
-		@RequestMapping(value = "/listarf", method = RequestMethod.GET, name = "listarFornecedorUrl")
-		@ResponseBody
-		public ModelAndView listar(@RequestParam(defaultValue = "1") Integer pagina) {
-			Page<Fornecedor> listaFornecedorCadastrados = repFornecedor.findAll(Paginacao.getPaginacao(pagina));
 
-			Paginacao listaPaginada = new Paginacao();
+	@RequestMapping(method = RequestMethod.POST, name = "salvarFornecedorUrl")
+	public String salvarNoBanco(@Valid Fornecedor fornecedorVindoDoForm, BindingResult resultadoValidacao,
+			RedirectAttributes atributos) {
 
-			listaPaginada.setTotalLinhas(repFornecedor.count());
-			listaPaginada.setPaginacorrente(pagina);
-
-			ModelAndView mav = new ModelAndView("fornecedor/ListaFornecedor");
-			mav.addObject("forncedorList", listaFornecedorCadastrados  );
-			mav.addObject("listaPaginada", listaPaginada);
-
-			return mav;
-		}
-		//Edicao
-		@RequestMapping(value = "/{id}/editarf", method = RequestMethod.GET, name = "alterarFornecedorUrl")
-		public ModelAndView alterar(@PathVariable Integer id) {
-			Fornecedor fornecedorSendoAlterado = repFornecedor.getOne(id);
-
-			List<Fornecedor> listaDeFornecedores = repFornecedor.findAll();
-
-			System.out.println("SAIU"  + fornecedorSendoAlterado.getNomeEmpresa());
-			ModelAndView mav = new ModelAndView("fornecedor/CadastroFornecedor");
-			mav.addObject("CadastroFornecedor", fornecedorSendoAlterado);
-			mav.addObject("fornecedorList", listaDeFornecedores);
-
-			return mav;
-
-		}
-		// Detalhe
-		@RequestMapping(value = "//{id}", name = "detalharFornecedorUrl")
-		public ModelAndView detalhar(@PathVariable Integer id) {
-
-			Fornecedor produtoVindoDoBanco = repFornecedor.getOne(id);
-			ModelAndView mav = new ModelAndView("fornecedor/detalheFornecedor");
-			mav.addObject("fornecedor", produtoVindoDoBanco);
-			return mav;
-		}
-		// Excluir
-		@SuppressWarnings("unused")
-		@RequestMapping(value = "//{id}/delete",method = RequestMethod.POST,  name = "excluirFornecedorUrl")
-		public String excluir(@PathVariable Integer id, RedirectAttributes atributos) {
-
-			
-		
-			Fornecedor fornecedorEncontrado = repFornecedor.getOne(id);
-			repFornecedor.delete(repFornecedor.getOne(id));
-			atributos.addFlashAttribute("mensagemStatus", "Fornecedor excluido com sucesso!");
-
-			return "redirect:/listarf";
+		if (resultadoValidacao.hasErrors()) {
+			return formulario(fornecedorVindoDoForm);
 		}
 
-	
-	
+		fornecedorRep.save(fornecedorVindoDoForm);
+		atributos.addFlashAttribute("mensagemStatus", "Fornecedor salvo com sucesso !");
+		return "redirect:/fornecedores";
+	}
+
+	@RequestMapping(method = RequestMethod.GET, name = "listarFornecedorUrl")
+	public ModelAndView listar(@RequestParam(defaultValue = "1") Integer pagina,
+			@RequestParam(defaultValue = "") String busca) {
+
+		ModelAndView mav = new ModelAndView("fornecedor/ListaFornecedor");
+		Page<Fornecedor> dados;
+
+		if (busca.equals("")) {
+			dados = fornecedorRep.findAll(Paginacao.getPaginacao(pagina));
+		} else {
+			dados = fornecedorRep.findByRazaoSocialContainingIgnoreCase(busca, Paginacao.getPaginacao(pagina));
+		}
+
+		mav.addObject("listaPaginada", dados);
+		mav.addObject("busca", busca);
+		return mav;
+	}
+
+	@RequestMapping(value = "{id}/edit", name = "alterarFornecedorUrl")
+	public String alterar(@PathVariable Long id, Model model) {
+
+		Fornecedor fornecedorEncontrado = fornecedorRep.getOne(id);
+		model.addAttribute(fornecedorEncontrado);
+		return formulario(fornecedorEncontrado);
+	}
+
+	@RequestMapping(value = "/{id}", name = "detalharFornecedorUrl")
+	public ModelAndView detalhar(@PathVariable Long id) {
+
+		Fornecedor fornecedorVindoDoBanco = fornecedorRep.getOne(id);
+		ModelAndView mav = new ModelAndView("fornecedor/detalheFornecedor");
+		mav.addObject("fornecedor", fornecedorVindoDoBanco);
+		return mav;
+	}
+
+	@RequestMapping(value = "/{id}/delete", method = RequestMethod.POST, name = "excluirFornecedorUrl")
+	public String excluir(@PathVariable Long id, RedirectAttributes atributos) {
+
+		Fornecedor fornecedorEncontrado = fornecedorRep.getOne(id);
+		fornecedorRep.delete(fornecedorEncontrado);
+		atributos.addFlashAttribute("mensagemStatus", "Fornecedor excluido com sucesso !");
+		return "redirect:/fornecedores";
+	}
+
 }

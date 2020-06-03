@@ -16,7 +16,7 @@ public class PedidoCompraForm {
 
 	public PedidoCompraForm(PedidoCompra pedido) {
 		this.pedidoCompra = pedido;
-	//	this.itensPedidoCompra = pedido.getItemPedidoCompra();
+		this.itensPedidoCompra = pedido.getItens();
 	}
 
 	public PedidoCompra getPedidoCompra() {

@@ -1,7 +1,7 @@
 package br.com.fapen.estoque.validation;
 
 import java.math.BigDecimal;
-//import java.time.LocalDate;
+import java.time.LocalDate;
 
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
@@ -9,7 +9,6 @@ import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
 
 import br.com.fapen.estoque.models.MateriaPrima;
-//import br.com.fapen.estoque.models.Produto;
 
 @Component
 public class ProdutoValidator implements Validator {
@@ -34,13 +33,13 @@ public class ProdutoValidator implements Validator {
 				errors.rejectValue("custoUnitario", "campo.obrigatorio");
 			}
 		}
-/*
+
 		if (produtoEmValidacao.getPrecoVenda() != null) {
 			if (produtoEmValidacao.getPrecoVenda().compareTo(BigDecimal.ZERO) == 0) {
 				errors.rejectValue("precoVenda", "campo.obrigatorio");
 			}
 		}
-		
+
 		if (produtoEmValidacao.getCustoUnitario() != null && produtoEmValidacao.getPrecoVenda() != null) {
 
 			// Valida o Preco de custo maior que o preco de venda
@@ -66,7 +65,7 @@ public class ProdutoValidator implements Validator {
 				errors.rejectValue("validade", "campo.obrigatorio");
 			}
 		}
-*/
+
 	}
 
 }

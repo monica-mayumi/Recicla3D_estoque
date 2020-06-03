@@ -49,7 +49,7 @@ public class UsuarioFormValidator implements Validator {
 			ValidationUtils.rejectIfEmptyOrWhitespace(errors, "usuario.password", "campo.obrigatorio");
 
 			//Usuario duplicado
-			usuarioPesquisa = usuarioRep.findByLogin(usuarioSendoValidado.getUsuario().getUsername());
+			usuarioPesquisa = usuarioRep.findByUsername(usuarioSendoValidado.getUsuario().getUsername());
 			if (usuarioPesquisa != null) {
 				errors.rejectValue("usuario.username", "usuario.duplicado");
 			}

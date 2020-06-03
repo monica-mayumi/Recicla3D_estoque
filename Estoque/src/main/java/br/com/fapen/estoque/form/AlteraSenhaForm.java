@@ -2,16 +2,16 @@ package br.com.fapen.estoque.form;
 
 public class AlteraSenhaForm {
 
-	private Integer idUsuario;
+	private Long idUsuario;
 	private String novaSenha;
 	private String novaSenhaConfirma;
 
-	public Integer getIdUsuario() {
+	public Long getIdUsuario() {
 		return idUsuario;
 	}
 
-	public void setIdUsuario(Integer integer) {
-		this.idUsuario = integer;
+	public void setIdUsuario(Long idUsuario) {
+		this.idUsuario = idUsuario;
 	}
 
 	public String getNovaSenha() {

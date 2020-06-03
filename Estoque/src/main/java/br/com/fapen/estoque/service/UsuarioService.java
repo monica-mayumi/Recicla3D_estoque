@@ -3,7 +3,6 @@ package br.com.fapen.estoque.service;
 import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-import java.time.LocalDate;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -27,26 +26,9 @@ public class UsuarioService implements UserDetailsService {
 	@Autowired
 	private PerfilRepository perfilRep;
 
-	private UsuarioService() {
-
-		super();
-		try {
-			addAdminUser();
-			System.out.println("oloco/; " + userExists("Admin"));
-			if (userExists("Admin") == false) {
-
-				System.out.println("HAHAHAHAHAHAHAHAHAHA");
-			}
-		} catch (Exception e) {
-			// TODO: handle exception
-			System.out.println("ERRO: " + e.toString());
-		}
-
-	}
-
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		Usuario usuarioBuscado = usuarioRep.findByLogin(username);
+		Usuario usuarioBuscado = usuarioRep.findByUsername(username);
 		return usuarioBuscado;
 	}
 
@@ -77,14 +59,14 @@ public class UsuarioService implements UserDetailsService {
 		usuarioRep.save(formulario.getUsuario());
 	}
 
-	public Usuario alterarSenha(Integer integer, String novaSenha) {
-		Usuario u = usuarioRep.findByid(integer);// .get();
+	public Usuario alterarSenha(Long idUsuario, String novaSenha) {
+		Usuario u = usuarioRep.findById(idUsuario).get();
 		String novaSenhaCripto = this.criptoSenha(novaSenha);
 		u.setPassword(novaSenhaCripto);
 		String novoHash = this.geraHashUsuario(u);
 		u.setHash(novoHash);
 
-		usuarioRep.alterarSenha(novaSenhaCripto, novoHash, integer);
+		usuarioRep.alterarSenha(novaSenhaCripto, novoHash, idUsuario);
 		return u;
 	}
 
@@ -106,21 +88,16 @@ public class UsuarioService implements UserDetailsService {
 	}
 
 	public boolean userExists(String login) {
-		Usuario usu = usuarioRep.findByLogin(login);
+		Usuario usu = usuarioRep.findByUsername(login);
 		return (usu != null);
 	}
 
 	public void addAdminUser() {
-		Perfil perfilAdmin = new Perfil();
-		//Perfil perfilAdmin = new Perfil("ROLE_ADMIN", "Administrador");
-		perfilAdmin.setAuthority("ROLE_ADMIN");
-		perfilAdmin.setDescricao("Administrador");
+		Perfil perfilAdmin = new Perfil("ROLE_ADMIN", "Administrador");
 		perfilRep.save(perfilAdmin);
 
 		Usuario usuarioAdmin = new Usuario();
-		usuarioAdmin.setUsername("Admin");
-		usuarioAdmin.setCpf("15515515588");
-		usuarioAdmin.setDataNascimento(LocalDate.parse("0001-01-01"));
+		usuarioAdmin.setUsername("admin");
 		usuarioAdmin.setNomeCompleto("Administrador");
 		usuarioAdmin.setEmail("rodrigo.guerato@hotmail.com");
 		usuarioAdmin.setPassword(this.criptoSenha("1234"));

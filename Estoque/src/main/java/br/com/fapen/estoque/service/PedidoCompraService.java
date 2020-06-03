@@ -59,8 +59,7 @@ public class PedidoCompraService {
 		Pageable paginacao = Paginacao.getPaginacao(filtro.getPagina());
 
 		if ("RS".equals(filtro.getTipoFiltro())) {
-			//return repPedidos.findByFornecedor_razaoSocialContainingIgnoreCase(filtro.getRazaoSocial(), paginacao);
-			return repPedidos.findByFornecedor_NomeEmpresa(filtro.getRazaoSocial(), paginacao);
+			return repPedidos.findByFornecedor_razaoSocialContainingIgnoreCase(filtro.getRazaoSocial(), paginacao);
 		} else if ("ST".equals(filtro.getTipoFiltro())) {
 			return repPedidos.findByStatus(filtro.getStatus(), paginacao);
 		} else if ("DT".equals(filtro.getTipoFiltro())) {
