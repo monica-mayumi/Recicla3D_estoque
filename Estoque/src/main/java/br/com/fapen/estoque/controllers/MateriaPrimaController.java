@@ -32,7 +32,7 @@ public class MateriaPrimaController {
 	@Autowired
 	FornecedorRepository repFornecedor;
 
-	@RequestMapping(value = "/novo", method = RequestMethod.GET, name = "novoProdutoUrl")
+	@RequestMapping(value = "/novoM", method = RequestMethod.GET, name = "novoProdutoUrl")
 	public ModelAndView folder() {
 		List<Fornecedor> listaDeFornecedores = repFornecedor.findAll();
 

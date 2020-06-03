@@ -11,91 +11,102 @@
 
 	<%@ include file="./base/navbar.jsp"%>
 
-	  <div class="slider">
+	<div class="slider">
 
 		<ul class="slides">
-			<li><img src="css/img/sustentabilidade.jpg"> 
+			<li><img src="css/img/sustentabilidade.jpg">
 				<div class="caption center-align">
 					<h3>Tecnologia e Sustentabilidade</h3>
 				</div></li>
-			<li><img src="css/img/3d.jpeg"> 
+			<li><img src="css/img/3d.jpeg">
 				<div class="caption left-align">
 					<h3>Ultilizando a tecnologia</h3>
 				</div>
-			<li><img src="css/img/foto001.jpg"> 
+			<li><img src="css/img/foto001.jpg">
 				<div class="caption center-align">
 					<h3>Preservando a natureza!</h3>
 
 				</div></li>
 		</ul>
 	</div>
-	
-	
-	<div class="row container">
-	<section class=" grey darken-2 col s12 m12 l12 card-panel hoverable">
-	<article class="col s12 l4 ">
-	<div class="card">
-        <div class="card-image">
-          <img src="css/img/3d.jpeg">
-        
-        </div>
-        <div class="card-content">
-          <span class="card-title">Card Title</span>
-          <p>I am a very simple card. I am good at containing small bits of information.
-          I am convenient because I require little markup to use effectively.</p>
-        </div>
-        
-      </div>
-	</article>
-		<article class="col s12 l4">
-	<div class="card">
-        <div class="card-image">
-          <img src="css/img/3d.jpeg">
-        
-        </div>
-        <div class="card-content">
-          <span class="card-title">Card Title</span>
-          <p>I am a very simple card. I am good at containing small bits of information.
-          I am convenient because I require little markup to use effectively.</p>
-        </div>
-       
-      </div>
-	</article>
-		<article class="col s12 l4">
-	<div class="card">
-        <div class="card-image">
-          <img src="css/img/3d.jpeg">
-        
-        </div>
-        <div class="card-content">
-          <span class="card-title">Card Title</span>
-          <p>I am a very simple card. I am good at containing small bits of information.
-          I am convenient because I require little markup to use effectively.</p>
-        </div>
-        
-      </div>
-	</article>
 
-	</section>
-	</div>	
+
+	<div class="row container">
+		<section class=" grey darken-2 col s12 m12 l12 card-panel hoverable">
+			<article class="col s12 l4 ">
+				<div class="card">
+					<div class="card-image">
+						<img src="css/img/lixo02.jpg">
+
+					</div>
+					<div class="card-content">
+						<span class="card-title">Brasil é o 4º pais do mundo que
+							mais gera lixo plástico.</span>
+					</div>
+					<div class="card-action">
+						<a
+							href="https://www.wwf.org.br/?70222/Brasil-e-o-4-pais-do-mundo-que-mais-gera-lixo-plastico">Organização
+							WWF</a>
+					</div>
+
+				</div>
+			</article>
+			<article class="col s12 l4">
+				<div class="card">
+					<div class="card-image">
+						<img src="css/img/plasticoOceano.jpg">
+
+					</div>
+					<div class="card-content">
+						<span class="card-title">Casal americano cria próteses de
+							mão com plástico retirado do mar.</span>
+
+					</div>
+					<div class="card-action">
+						<a
+							href="https://www.reciclasampa.com.br/artigo/casal-americano-cria-proteses-de-mao-com-plastico-retirado-do-mar">Reciclasampa</a>
+					</div>
+				</div>
+			</article>
+			<article class="col s12 l4">
+				<div class="card">
+					<div class="card-image">
+						<img src="css/img/startup01.jpg">
+
+					</div>
+					<div class="card-content">
+						<span class="card-title">Inovação sustentável : Conheça 8
+							startups de sustentabilidade.</span>
+					</div>
+					<div class="card-action">
+						<a
+							href="https://inovacaosebraeminas.com.br/inovacao-sustentavel-conheca-8-startups/">SEBRAE</a>
+					</div>
+
+				</div>
+			</article>
+
+		</section>
+	</div>
 	<div class="row container ">
-	<section class=" grey darken-2  col s12 m12 l12 card-panel hoverable">
-	<article class="col s12 l12">
-	<h5 class="center-align ">UM POUCO SOBRE NÓS</h5> 
-	<img src="css/img/logo2.png" class=" responsive-img">
-	  <p class="flow-text center-alignfont-weight: bold;
+		<section class=" grey darken-2  col s12 m12 l12 card-panel hoverable">
+			<article class="col s12 l12">
+				<h5 class="center-align ">UM POUCO SOBRE NÓS</h5>
+				<img src="css/img/logo2.png" class=" responsive-img">
+				<p
+					class="flow-text center-alignfont-weight: bold;
         font-size: 30px;
-        font-family: arial, sans-serif; ">O projeto surgiu visando questões ambientais e a implementação de novas tecnologias com o intuito de preservar a natureza.
-    O  nosso objetivo e  produzir através do  plástico reciclável um utensilio decorativo com o auxílio de uma máquina 3D. 
- 
-          
-         </p>
-          
-</article>
-</section>
-</div>
+        font-family: arial, sans-serif; ">O
+					projeto surgiu visando questões ambientais e a implementação de
+					novas tecnologias com o intuito de preservar a natureza. O nosso
+					objetivo e produzir através do plástico reciclável um utensilio
+					decorativo com o auxílio de uma máquina 3D.</p>
+
+			</article>
+		</section>
+	</div>
 	<!-- <div class="col s12 m8 offset-m2 l6 offset-l3"> -->
-		<!-- <div class="card-panel grey lighten-5 z-depth-1 ">
+	<!-- <div class="card-panel grey lighten-5 z-depth-1 ">
 			 <div class="row valign-wrapper grey lighten-1 lighten-3">
 				<div class="col l10">
 					<img src="css/img/2.jpg" alt="" class="circle responsive-img">
@@ -115,8 +126,8 @@
 				</div> -->
 
 
-			</div>
-		</div>
+	</div>
+	</div>
 
 
 	<%@ include file="./base/scripts.jsp"%>

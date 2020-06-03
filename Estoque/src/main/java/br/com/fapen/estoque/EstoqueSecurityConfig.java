@@ -39,6 +39,7 @@ public class EstoqueSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
     protected void configure(HttpSecurity http) throws Exception {
 		http.authorizeRequests()
+		     .antMatchers("/usuarios/**").permitAll()
 			.antMatchers("/home").permitAll()
 			.antMatchers("/sobre").permitAll()
 			.antMatchers("/contato").permitAll()
@@ -49,7 +50,7 @@ public class EstoqueSecurityConfig extends WebSecurityConfigurerAdapter {
 			.antMatchers("/js/**").permitAll()
 			.antMatchers("/img/**").permitAll()					
 			.antMatchers(HttpMethod.POST, "/**/delete").hasAnyRole("ADMIN", "GERENTE")
-			.antMatchers("/usuarios/**").hasRole("ADMIN")
+			//.antMatchers("/usuarios/**").hasRole("ADMIN")
 			.anyRequest().authenticated()
 			.and()
 			.formLogin().loginPage("/login").defaultSuccessUrl("/home").permitAll()

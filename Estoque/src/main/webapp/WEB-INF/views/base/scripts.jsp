@@ -26,11 +26,13 @@
             </div>
           </div>
           <div class="footer-copyright">
-            <div class="container">
-            © 2020 Copyright Text
            
-            </div>
+             <div class="
+center"> <img src="css/img/fapen.png">  </div>
+              <div class="container">
+            © 2020 Copyright Text
+            
+             </div>
           </div>
-        </footer>
-    <img src="css/img/fapen.png">        
+        </footer>        
     </footer>

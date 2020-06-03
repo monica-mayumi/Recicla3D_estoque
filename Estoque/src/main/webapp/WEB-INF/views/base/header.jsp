@@ -6,7 +6,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
   <link rel="icon" href="../../favicon.ico">
-  <title>Pagina inicial</title>
+  <title>Recicla3D</title>
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 	<link href="/css/materialize.min.css" type="text/css" rel="stylesheet" media="screen,projection"">
 	<link href="/css/starter-template.css" rel="stylesheet">

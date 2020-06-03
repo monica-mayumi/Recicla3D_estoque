@@ -40,7 +40,7 @@
 			
 			<div class="input-field col s3">
 				<a class="btn-floating btn-large waves-effect waves-light red right"
-					title="novo" href="/novo"> <i class="material-icons">add</i>
+					title="novo" href="novoM"> <i class="material-icons">add</i>
 				</a>
 			</div>
 		</div>

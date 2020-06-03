@@ -9,6 +9,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -23,6 +24,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import br.com.fapen.estoque.form.UsuarioForm;
+import br.com.fapen.estoque.models.Perfil;
 import br.com.fapen.estoque.models.Usuario;
 import br.com.fapen.estoque.repositories.Paginacao;
 import br.com.fapen.estoque.repositories.PerfilRepository;
@@ -61,7 +63,6 @@ public class UsuarioController {
 		mav.addObject("listaDePerfis", perfilRep.findAll());
 		return mav;
 	}
-	
 
 	@RequestMapping(method = RequestMethod.POST, name = "salvarUsuarioUrl")
 	public ModelAndView salvarNoBanco(@Valid UsuarioForm usuarioForm, BindingResult resultado,
@@ -70,7 +71,6 @@ public class UsuarioController {
 		if (resultado.hasErrors()) {
 			return formulario(usuarioForm);
 		}
-		
 		
 		servicoDeUsuario.salvar(usuarioForm);
 		atributos.addFlashAttribute("mensagemStatus", "Usuário salvo com sucesso !");
@@ -96,9 +96,9 @@ public class UsuarioController {
 	}
 
 	@RequestMapping(value = "{id}/edit", name = "alterarUsuarioUrl")
-	public ModelAndView alterar(@PathVariable Integer id, Model model){
+	public ModelAndView alterar(@PathVariable Integer id, Model model) {
 
-		Usuario usuarioEncontrado = usuarioRep.findByid(id); //.get();
+		Usuario usuarioEncontrado = usuarioRep.findById(id).get();
 
 		UsuarioForm formulario = new UsuarioForm(usuarioEncontrado);
 		formulario.setInclusao(false);
@@ -110,7 +110,7 @@ public class UsuarioController {
 	@RequestMapping(value = "/{id}", name = "detalharUsuarioUrl")
 	public ModelAndView detalhar(@PathVariable Integer id) {
 
-		Usuario usuarioVindoDoBanco = usuarioRep.findByid(id); //.get();
+		Usuario usuarioVindoDoBanco = usuarioRep.findById(id).get();
 		ModelAndView mav = new ModelAndView("usuario/detalhe");
 		mav.addObject("registro", usuarioVindoDoBanco);
 		return mav;
@@ -119,7 +119,7 @@ public class UsuarioController {
 	@RequestMapping(value = "/{id}/delete", method = RequestMethod.POST, name = "excluirUsuarioUrl")
 	public String excluir(@PathVariable Integer id, RedirectAttributes atributos) {
 
-		Usuario usuarioEncontrado = usuarioRep.findByid(id); //.get();
+		Usuario usuarioEncontrado = usuarioRep.findById(id).get();
 
 		if (usuarioEncontrado.getUsername().trim().equalsIgnoreCase("admin")) {
 			atributos.addFlashAttribute("mensagemStatus", "Usuário administrador não pode ser excluido !");
@@ -157,4 +157,3 @@ public class UsuarioController {
 		return "redirect:/usuarios/perfil";
 	}
 }
-
