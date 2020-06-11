@@ -8,7 +8,7 @@ $(document).ready(function(){
 		$.ajax({
 			type: "GET",
 			url: "http://viacep.com.br/ws/" + cepInformado +"/json/",
-			dataType: "json",
+			dataType: "jsonp",
 			contentType: "application/json; charset=utf-8",
 			success: function (retorno) {
 				if (retorno != null) {
@@ -22,6 +22,7 @@ $(document).ready(function(){
 						$("#endereco\\.bairro").val(retorno.bairro);
 						$("#endereco\\.municipio").val(retorno.localidade);
 						$("#endereco\\.uf").val(retorno.uf);
+						M.updateTextFields();
 					}
 				}
 			},

@@ -9,7 +9,6 @@ import org.springframework.data.domain.Page;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -24,7 +23,6 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import br.com.fapen.estoque.form.UsuarioForm;
-import br.com.fapen.estoque.models.Perfil;
 import br.com.fapen.estoque.models.Usuario;
 import br.com.fapen.estoque.repositories.Paginacao;
 import br.com.fapen.estoque.repositories.PerfilRepository;
@@ -74,7 +72,7 @@ public class UsuarioController {
 		
 		servicoDeUsuario.salvar(usuarioForm);
 		atributos.addFlashAttribute("mensagemStatus", "Usuário salvo com sucesso !");
-		return new ModelAndView("redirect:/usuarios");
+		return new ModelAndView("redirect:/usuario");
 	}
 
 	@RequestMapping(method = RequestMethod.GET, name = "listarUsuarioUrl")
@@ -123,12 +121,12 @@ public class UsuarioController {
 
 		if (usuarioEncontrado.getUsername().trim().equalsIgnoreCase("admin")) {
 			atributos.addFlashAttribute("mensagemStatus", "Usuário administrador não pode ser excluido !");
-			return "redirect:/usuarios";
+			return "redirect:/usuario";
 		}
 
 		usuarioRep.delete(usuarioEncontrado);
 		atributos.addFlashAttribute("mensagemStatus", "Usuário excluido com sucesso !");
-		return "redirect:/usuarios";
+		return "redirect:/usuario";
 	}
 
 	@RequestMapping(value = "/perfil", method = RequestMethod.GET, name = "perfilUsuarioUrl")
@@ -154,6 +152,6 @@ public class UsuarioController {
 				usuarioEncontrado.getPassword(), usuarioEncontrado.getAuthorities());
 		SecurityContextHolder.getContext().setAuthentication(authentication);
 
-		return "redirect:/usuarios/perfil";
+		return "redirect:/usuario/perfil";
 	}
 }

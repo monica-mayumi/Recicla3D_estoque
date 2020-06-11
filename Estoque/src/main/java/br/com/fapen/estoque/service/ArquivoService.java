@@ -15,7 +15,7 @@ public class ArquivoService {
 	@Autowired
 	private ResourceLoader resourceLoader;
 
-	public static final String DIRETORIO_BASE = "/home/rodrigo/dev/media/";
+	public static final String DIRETORIO_BASE = "C://media";
 	public static final String DIRETORIO_TEMPLATE = "/WEB-INF/templateEmail/";
 
 	public String salvarEmDisco(MultipartFile arquivo) {

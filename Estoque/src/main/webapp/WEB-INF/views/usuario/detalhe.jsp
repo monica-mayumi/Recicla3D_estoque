@@ -8,11 +8,39 @@
 
 <body>
 	<%@ include file="../base/navbar.jsp" %>
-	<div class="container">
+	<div class="container center aling">
 		<div>
 			<h4>Dados do Usuário</h4>
 		</div>
 		<div>
+		<fmt:parseDate value="${registro.dataNascimento}" pattern="yyyy-MM-dd" var="parsedDate" type="date" />
+		<table>
+		
+			 <thead>
+				<tr>
+					<th>ID:</th>
+					<td>${registro.id}</td>
+				</tr>
+				<tr>
+					<th>Login:</th>
+					<td>${registro.username}</td>
+				</tr>
+				<tr>
+					<th>Nome:</th>
+					<td>${registro.nomeCompleto}</td>
+				</tr>
+				<tr>
+					<th>email:</th>
+					<td>${registro.email}</td>
+				</tr>
+				<tr>
+					<th>Nascimento:</th>
+					<td><fmt:formatDate value="${parsedDate}" pattern="dd/MM/yyyy"/></td>
+				</tr>
+				</thead>
+				</table>
+				</div>
+		<!-- <div>
 			<fmt:parseDate value="${registro.dataNascimento}" pattern="yyyy-MM-dd" var="parsedDate" type="date" />
 			<ul>
 				<li>Id: ${registro.id}</li>
@@ -21,9 +49,11 @@
 				<li>email: ${registro.email}</li>
 				<li>Nascimento: <fmt:formatDate value="${parsedDate}" pattern="dd/MM/yyyy"/></li>
 			</ul>
-		</div>
-		<div>
-			<a class="btn btn-warning" href="${s:mvcUrl('listarUsuarioUrl').build()}">voltar</a>
+		</div> -->
+		<br>
+		<br>
+		<div class="center aling">
+			<a class="btn-small red darken-2" href="${s:mvcUrl('listarUsuarioUrl').build()}">voltar</a>
 		</div>
 	</div>
 	<%@ include file="../base/scripts.jsp" %>

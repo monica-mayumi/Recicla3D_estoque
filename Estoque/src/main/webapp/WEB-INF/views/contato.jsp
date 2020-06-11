@@ -14,19 +14,7 @@
 		
 			
            
-                                
-<!--<?php
-@session_start();
-$logado=isset($_SESSION['logado'])?$_SESSION['logado']:false;                
-if(!$logado){
-    echo '<li><a href="login.php"> Login</a></li>';
-    }
-    else{
-        echo '<li><a href="adm/minhaconta.php"> Minha conta</a></li>';
-        echo '<li><a href="logout.php"> Logout</a></li>';
-    }
-?>-->  
-		
+              
 
 	<!--   	
 	<sec:authorize access="!isAuthenticated()">

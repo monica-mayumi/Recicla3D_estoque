@@ -88,23 +88,7 @@
 
 		</section>
 	</div>
-	<div class="row container ">
-		<section class=" grey darken-2  col s12 m12 l12 card-panel hoverable">
-			<article class="col s12 l12">
-				<h5 class="center-align ">UM POUCO SOBRE NÓS</h5>
-				<img src="css/img/logo2.png" class=" responsive-img">
-				<p
-					class="flow-text center-alignfont-weight: bold;
-        font-size: 30px;
-        font-family: arial, sans-serif; ">O
-					projeto surgiu visando questões ambientais e a implementação de
-					novas tecnologias com o intuito de preservar a natureza. O nosso
-					objetivo e produzir através do plástico reciclável um utensilio
-					decorativo com o auxílio de uma máquina 3D.</p>
-
-			</article>
-		</section>
-	</div>
+	
 	<!-- <div class="col s12 m8 offset-m2 l6 offset-l3"> -->
 	<!-- <div class="card-panel grey lighten-5 z-depth-1 ">
 			 <div class="row valign-wrapper grey lighten-1 lighten-3">

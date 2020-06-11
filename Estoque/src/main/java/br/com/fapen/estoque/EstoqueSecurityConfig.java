@@ -51,4 +51,3 @@ public class EstoqueSecurityConfig extends WebSecurityConfigurerAdapter{
 			.logout(). logoutRequestMatcher(new AntPathRequestMatcher("/logout")).logoutSuccessUrl("/home");
 	}	
 }
-

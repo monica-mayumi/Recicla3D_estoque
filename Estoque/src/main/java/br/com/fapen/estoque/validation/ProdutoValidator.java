@@ -8,7 +8,7 @@ import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
 
-import br.com.fapen.estoque.models.MateriaPrima;
+import br.com.fapen.estoque.models.Produto;
 
 @Component
 public class ProdutoValidator implements Validator {
@@ -16,7 +16,7 @@ public class ProdutoValidator implements Validator {
 	@Override
 	public boolean supports(Class<?> clazz) {
 
-		return MateriaPrima.class.isAssignableFrom(clazz);
+		return Produto.class.isAssignableFrom(clazz);
 	}
 
 	@Override
@@ -26,7 +26,7 @@ public class ProdutoValidator implements Validator {
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "precoVenda", "campo.obrigatorio");
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "categoria", "campo.obrigatorio");
 
-		MateriaPrima produtoEmValidacao = (MateriaPrima) target;
+		Produto produtoEmValidacao = (Produto) target;
 
 		if (produtoEmValidacao.getCustoUnitario() != null) {
 			if (produtoEmValidacao.getCustoUnitario().compareTo(BigDecimal.ZERO) == 0) {

@@ -6,6 +6,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <html lang="pt-br">
 	<%@ include file="../base/header.jsp"%>
+	
 	<body>
 		<%@ include file="../base/navbar.jsp"%>
 	
@@ -127,7 +128,7 @@
 				$("select").formSelect();
 			}
 			function erroAjax(dadosErro) {
-				console.log("ERRO" + retornoErro);
+				console.log("ERRO" + dadosErro);
 			}
 			$("body").on("click", ".deletaItem", function(event) {
 				event.preventDefault();

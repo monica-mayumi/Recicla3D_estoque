@@ -4,9 +4,11 @@
 <%@ taglib prefix="s" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="f" uri="http://www.springframework.org/tags/form" %>
 <html>
+
 	<%@ include file="../base/header.jsp"%>
 	<body>
 		<%@ include file="../base/navbar.jsp"%>
+		
 	
 		<div class="container">			
 			<br>			

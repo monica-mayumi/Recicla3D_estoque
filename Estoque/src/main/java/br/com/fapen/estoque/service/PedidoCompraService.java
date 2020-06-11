@@ -2,6 +2,7 @@ package br.com.fapen.estoque.service;
 
 import java.io.ByteArrayInputStream;
 import java.math.BigDecimal;
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +11,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import br.com.fapen.estoque.enums.StatusEnum;
 import br.com.fapen.estoque.form.PedidoCompraForm;
 import br.com.fapen.estoque.form.PedidoFiltroForm;
 import br.com.fapen.estoque.models.ItemPedidoCompra;
@@ -59,7 +61,7 @@ public class PedidoCompraService {
 		Pageable paginacao = Paginacao.getPaginacao(filtro.getPagina());
 
 		if ("RS".equals(filtro.getTipoFiltro())) {
-			return repPedidos.findByFornecedor_razaoSocialContainingIgnoreCase(filtro.getRazaoSocial(), paginacao);
+			return repPedidos.findByFornecedorRazaoSocialContainingIgnoreCase(filtro.getRazaoSocial(), paginacao);
 		} else if ("ST".equals(filtro.getTipoFiltro())) {
 			return repPedidos.findByStatus(filtro.getStatus(), paginacao);
 		} else if ("DT".equals(filtro.getTipoFiltro())) {
@@ -85,5 +87,14 @@ public class PedidoCompraService {
 		return relImpressaoPedido.gerarPDF(pedCompra);
 
 	}
+	public List<PedidoCompra> listarEmDigitacao() {
+	return repPedidos.findByStatus(StatusEnum.EM_DIGITACAO);
+	}
+
+	public PedidoCompra alteraStatus(PedidoCompra pedido, StatusEnum status) {
+		pedido.setStatus(status);
+		return repPedidos.save(pedido);
+	}
+
 
 }

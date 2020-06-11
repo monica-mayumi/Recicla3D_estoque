@@ -32,7 +32,7 @@
 					</div>
 				</f:form>
 				<div class="input-field col s3">
-					<a class="btn-floating btn-large waves-effect waves-light red right" title="novo" href="${s:mvcUrl('novoPerfilUrl').build()}" >
+					<a class="btn-floating btn-large waves-effect waves-light #006064 cyan darken-4 right" title="novo" href="${s:mvcUrl('novoPerfilUrl').build()}" >
 						<i class="material-icons">add</i>
 					</a>
 				</div>
@@ -55,9 +55,9 @@
 										<td>${registro.authority}</td>
 										<td>${registro.descricao}</td>
 										<td class="center-align">
-											<a class="btn-small green" title="alterar" href="${s:mvcUrl('alterarPerfilUrl').arg(0, registro.authority).build()}"><i class="material-icons">edit</i></a>
-											<a class="btn-small" title="detalhes" href="${s:mvcUrl('detalharPerfilUrl').arg(0, registro.authority).build()}"><i class="material-icons">more_horiz</i></a>
-											<button class="btn-small red modal-excluir" title="excluir" type="button" data-target="modalExcluir" data-descr="${registro.descricao}"  >
+											<a class="btn-small deep-purple darken-2" title="alterar" href="${s:mvcUrl('alterarPerfilUrl').arg(0, registro.authority).build()}"><i class="material-icons">edit</i></a>
+											<a class="btn-small #303f9f indigo darken-2" title="detalhes" href="${s:mvcUrl('detalharPerfilUrl').arg(0, registro.authority).build()}"><i class="material-icons">more_horiz</i></a>
+											<button class="btn-small #b71c1c red darken-4 modal-excluir" title="excluir" type="button" data-target="modalExcluir" data-descr="${registro.descricao}"  >
 												<i class="material-icons">delete</i>
 												<f:form action="${s:mvcUrl('excluirPerfilUrl').arg(0, registro.authority).build()}" method="post">
 												</f:form>

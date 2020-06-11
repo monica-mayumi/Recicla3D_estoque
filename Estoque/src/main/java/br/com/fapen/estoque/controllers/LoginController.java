@@ -66,10 +66,10 @@ public class LoginController {
 		System.out.println(request.getContextPath());
 
 		// envia um email com o link para mudança de senha
-		Usuario user = usuarioService.loadUserByEmail(recupSenhaForm.getEmail());
-		emailService.enviarEmailRecupSenha(request, user);
-		return "login/msgEmailSenha";
-	}
+				Usuario user = usuarioService.loadUserByEmail(recupSenhaForm.getEmail());
+				emailService.enviarEmailRecupSenha(request, user);
+				return "login/msgEmailSenha";
+			}
 
 	@RequestMapping(value = "/recuperarSenha/alterarSenha", method = RequestMethod.GET, name = "alteraSenhaCheckUrl")
 	public ModelAndView alteraSenhaCheck(@RequestParam(defaultValue = "") String token) {

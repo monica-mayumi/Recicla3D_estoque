@@ -20,7 +20,7 @@ public class ItemPedidoCompra {
 	private PedidoCompra pedido;
 
 	@ManyToOne
-	private MateriaPrima produto;
+	private Produto produto;
 
 	private Double quantidade;
 
@@ -43,11 +43,11 @@ public class ItemPedidoCompra {
 		this.pedido = pedido;
 	}
 
-	public MateriaPrima getProduto() {
+	public Produto getProduto() {
 		return produto;
 	}
 
-	public void setProduto(MateriaPrima produto) {
+	public void setProduto(Produto produto) {
 		this.produto = produto;
 	}
 

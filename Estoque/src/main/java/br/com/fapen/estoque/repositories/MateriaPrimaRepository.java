@@ -4,10 +4,10 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import br.com.fapen.estoque.models.MateriaPrima;
+import br.com.fapen.estoque.models.Produto;
 
-public interface MateriaPrimaRepository extends JpaRepository<MateriaPrima, Long> {
+public interface MateriaPrimaRepository extends JpaRepository<Produto, Long> {
 
-	public Page<MateriaPrima> findByDescricaoContainingIgnoreCase(String descricao, Pageable paginacao);
+	public Page<Produto> findByDescricaoContainingIgnoreCase(String descricao, Pageable paginacao);
 
 }

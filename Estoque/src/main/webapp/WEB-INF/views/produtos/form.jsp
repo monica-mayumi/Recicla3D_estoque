@@ -10,9 +10,10 @@
 	
 		<div class="container">			
 			<br>			
-			<f:form action="${s:mvcUrl('salvarProdutoUrl').build()}" method="post" modelAttribute="materiaPrima">
+			<f:form action="${s:mvcUrl('salvarProdutoUrl').build()}" method="post" modelAttribute="produto">
 				<f:hidden path="id"/>
-				
+				<f:hidden path="saldoAtual" />
+
 				<div class="row">
 					<div class="col s12">
 						
@@ -34,11 +35,11 @@
 										<f:input path="custoUnitario" cssClass="validate" type="number" step="0.01" min="0" />
 										<f:errors path="custoUnitario" cssClass="helper-text" />
 									</div>
-									<div class="input-field col s6">
+									<!--<div class="input-field col s6">
 										<label for="precoVenda">Preço de Venda</label>
 										<f:input path="precoVenda" cssClass="validate" type="number" step="0.01" min="0" />
 										<f:errors path="precoVenda" cssClass="helper-text" />
-									</div>						
+									</div>		-->				
 								</div>
 								
 								<div class="row">
@@ -48,11 +49,11 @@
 										<f:errors path="categoria" cssClass="helper-text" />
 									</div>	
 									
-									<div class="input-field col s3">
+									<!-- <div class="input-field col s3">
 										<label for="validade">Validade</label>
 										<f:input path="validade" cssClass="validate datepicker"/>
 										<f:errors path="validade" cssClass="helper-text" />
-									</div>
+									</div> -->
 																
 								</div>					
 							

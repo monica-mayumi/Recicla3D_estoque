@@ -8,13 +8,41 @@
 
 <body>
 	<%@ include file="../base/navbar.jsp" %>
-	<div class="container">
-		<div class="row">
+	<div class="container center aling ">
+	<div class="row">
 			<div class="col s12">
-				<h5>Pedido de Compra Nº ${registro.id}</h5>
+				<h4>Pedido de Compra Nº ${registro.id}</h4>
 			</div>
 		</div>
-		<div class="row">
+			<div>
+				<fmt:parseDate value="${registro.dataEntrega}" pattern="yyyy-MM-dd" var="dataModificada" type="date" />
+	<table>
+			 <thead>
+				<tr>
+					<th>Fornecedor:</th>
+					<td>${registro.fornecedor.razaoSocial}</td>
+				</tr>
+				<tr>
+				<th>Previsão Entrega:</th>
+					<td><fmt:formatDate value="${dataModificada}" pattern="dd/MM/yyyy" /></td>
+				</tr>
+				<tr>
+				<th>Condição de Pagamento:</th>
+					<td>${registro.condicaoPagamento.displayValue}</td>
+				</tr>
+				<tr>
+				<th>Status:</th>
+					<td>${registro.status.displayValue}</td>
+				</tr>
+				<tr>
+				<th>Valor Total:</th>
+					<td><fmt:formatNumber value="${registro.valorTotal}" type="currency"/></td>
+				</tr>
+				</thead>
+				</table>
+				</div>
+		
+		<!-- <div class="row">
 			<div class="col s12">
 				<fmt:parseDate value="${registro.dataEntrega}" pattern="yyyy-MM-dd" var="dataModificada" type="date" />
 				<ul>
@@ -25,7 +53,8 @@
 					<li><Strong>Valor Total:</Strong> <fmt:formatNumber value="${registro.valorTotal}" type="currency"/></li>
 				</ul>			
 			</div>		
-		</div>		
+		</div>	 -->
+			
 		<div class="row">
 			<div class="col s12 responsive-table">
 				<table>
@@ -54,9 +83,10 @@
 		</div>
 		
 		<div>
-			<a class="btn btn-warning" href="${s:mvcUrl('listarPedidoCompraUrl').build()}">voltar</a>
+			<a class="btn btn-warning red darken-2" href="${s:mvcUrl('listarPedidoCompraUrl').build()}">voltar</a>
 		</div>
 	</div>
-	<%@ include file="../base/scripts.jsp" %>
+	<%@ include file="../base/scripts.jsp"%>
 </body>
+
 </html>

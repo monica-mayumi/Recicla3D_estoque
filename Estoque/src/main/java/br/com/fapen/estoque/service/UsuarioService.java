@@ -7,7 +7,6 @@ import java.security.NoSuchAlgorithmException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -27,8 +26,15 @@ public class UsuarioService implements UserDetailsService {
 	private PerfilRepository perfilRep;
 
 	@Override
-	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		Usuario usuarioBuscado = usuarioRep.findByUsername(username);
+	public UserDetails loadUserByUsername(String username) {
+		String bla = username.trim();
+		Usuario usuarioBuscado = new Usuario();
+		try {
+			usuarioBuscado = usuarioRep.findByUsername(bla);
+		    return usuarioBuscado;
+		} catch (Exception e) {
+			System.out.println("Erro no login: " + e.toString());
+		}
 		return usuarioBuscado;
 	}
 
@@ -99,7 +105,7 @@ public class UsuarioService implements UserDetailsService {
 		Usuario usuarioAdmin = new Usuario();
 		usuarioAdmin.setUsername("admin");
 		usuarioAdmin.setNomeCompleto("Administrador");
-		usuarioAdmin.setEmail("rodrigo.guerato@hotmail.com");
+		usuarioAdmin.setEmail("monicamayumi44@gmail.com");
 		usuarioAdmin.setPassword(this.criptoSenha("1234"));
 		usuarioAdmin.setHash(this.geraHashUsuario(usuarioAdmin));
 		usuarioAdmin.getAuthorities().add(perfilAdmin);

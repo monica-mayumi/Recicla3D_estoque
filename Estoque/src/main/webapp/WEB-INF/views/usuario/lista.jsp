@@ -6,7 +6,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <html>
 	<%@ include file="../base/header.jsp" %>
-	
+
 	<body>
 		<%@ include file="../base/navbar.jsp" %>
 		
@@ -32,7 +32,7 @@
 					</div>
 				</f:form>
 				<div class="input-field col s3">
-					<a class="btn-floating btn-large waves-effect waves-light red right" title="novo" href="${s:mvcUrl('novoUsuarioUrl').build()}" >
+					<a class="btn-floating btn-large waves-effect waves-light #006064 cyan darken-4 right" title="novo" href="${s:mvcUrl('novoUsuarioUrl').build()}" >
 						<i class="material-icons">add</i>
 					</a>
 				</div>
@@ -59,9 +59,9 @@
 										<td class="fmt-cpf">${registro.cpf}</td>
 										<td>${registro.email}</td>
 										<td class="center-align">
-											<a class="btn-small green" title="alterar" href="${s:mvcUrl('alterarUsuarioUrl').arg(0, registro.id).build()}"><i class="material-icons">edit</i></a>
-											<a class="btn-small" title="detalhes" href="${s:mvcUrl('detalharUsuarioUrl').arg(0, registro.id).build()}"><i class="material-icons">more_horiz</i></a>
-											<button class="btn-small red modal-excluir" title="excluir" type="button" data-target="modalExcluir" data-descr="${registro.nomeCompleto}"  >
+											<a class="btn-small deep-purple darken-2" title="alterar" href="${s:mvcUrl('alterarUsuarioUrl').arg(0, registro.id).build()}"><i class="material-icons">edit</i></a>
+											<a class="btn-small #303f9f indigo darken-2" title="detalhes" href="${s:mvcUrl('detalharUsuarioUrl').arg(0, registro.id).build()}"><i class="material-icons">more_horiz</i></a>
+											<button class="btn-small #b71c1c red darken-4 modal-excluir" title="excluir" type="button" data-target="modalExcluir" data-descr="${registro.nomeCompleto}"  >
 												<i class="material-icons">delete</i>
 												<f:form action="${s:mvcUrl('excluirUsuarioUrl').arg(0, registro.id).build()}" method="post">
 												</f:form>

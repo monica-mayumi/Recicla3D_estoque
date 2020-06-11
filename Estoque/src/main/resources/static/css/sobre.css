@@ -1,7 +1,11 @@
-body{
-background-image: url("img/img10.jpg");	
+h3{
+color:#fafafa;
+
+}
+h5{
+	color:#fafafa;
 }
 p{
-	font-weight: 600;
-}
+   font-size: 20px;
 
+}

@@ -9,7 +9,7 @@
 	<body>
 		<%@ include file="../base/navbar.jsp" %>
 		
-		<div class="container">
+		<div class="container ">
 			<br>
 
 			<c:if test="${mensagemStatus != null}">
@@ -31,7 +31,7 @@
 					</div>
 				</f:form>
 				<div class="input-field col s3">
-					<a class="btn-floating btn-large waves-effect waves-light red right" title="novo" href="${s:mvcUrl('novoFornecedorUrl').build()}" >
+					<a class="btn-floating btn-large waves-effect waves-light #006064 cyan darken-4 right" title="novo" href="${s:mvcUrl('novoFornecedorUrl').build()}" >
 						<i class="material-icons">add</i>
 					</a>
 				</div>
@@ -58,9 +58,9 @@
 										<td>${registro.nomeFantasia}</td>
 										<td class="fmt-cnpj">${registro.cnpj}</td>
 										<td class="center-align">
-											<a class="btn-small green" title="alterar" href="${s:mvcUrl('alterarFornecedorUrl').arg(0, registro.id).build()}"><i class="material-icons">edit</i></a>
-											<a class="btn-small" title="detalhes"  href="${s:mvcUrl('detalharFornecedorUrl').arg(0, registro.id).build()}"><i class="material-icons">more_horiz</i></a>
-											<button class="btn-small red modal-excluir" title="excluir" type="button" data-target="modalExcluir" data-descr="${registro.razaoSocial}"  >
+											<a class="btn-small deep-purple darken-2" title="alterar" href="${s:mvcUrl('alterarFornecedorUrl').arg(0, registro.id).build()}"><i class="material-icons">edit</i></a>
+											<a class="btn-small #303f9f indigo darken-2" title="detalhes"  href="${s:mvcUrl('detalharFornecedorUrl').arg(0, registro.id).build()}"><i class="material-icons">more_horiz</i></a>
+											<button class="btn-small #b71c1c red darken-4 modal-excluir" title="excluir" type="button" data-target="modalExcluir" data-descr="${registro.razaoSocial}"  >
 												<i class="material-icons">delete</i>
 												<f:form action="${s:mvcUrl('excluirFornecedorUrl').arg(0, registro.id).build()}" method="post">
 												</f:form>

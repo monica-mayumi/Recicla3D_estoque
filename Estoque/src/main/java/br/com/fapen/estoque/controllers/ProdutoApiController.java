@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.fapen.estoque.models.MateriaPrima;
+import br.com.fapen.estoque.models.Produto;
 import br.com.fapen.estoque.repositories.MateriaPrimaRepository;
 import br.com.fapen.estoque.validation.MateriaPrimaValidator;
 
@@ -40,41 +40,41 @@ public class ProdutoApiController {
 	}
 
 	@GetMapping
-	public List<MateriaPrima> listar() {
+	public List<Produto> listar() {
 		return repProdutos.findAll();
 	}
 
 	@GetMapping("/{id}")
-	public ResponseEntity<MateriaPrima> buscarPorId(@PathVariable Long id) {
-		Optional<MateriaPrima> prod = repProdutos.findById(id);
+	public ResponseEntity<Produto> buscarPorId(@PathVariable Long id) {
+		Optional<Produto> prod = repProdutos.findById(id);
 		if (prod.isEmpty()) {
-			return new ResponseEntity<MateriaPrima>(HttpStatus.NOT_FOUND);
+			return new ResponseEntity<Produto>(HttpStatus.NOT_FOUND);
 		}
-		return new ResponseEntity<MateriaPrima>(prod.get(), HttpStatus.OK);
+		return new ResponseEntity<Produto>(prod.get(), HttpStatus.OK);
 	}
 
 	@PostMapping
-	public ResponseEntity<Object> incluir(@Valid @RequestBody MateriaPrima produto) {
+	public ResponseEntity<Object> incluir(@Valid @RequestBody Produto produto) {
 		repProdutos.save(produto);
 		return new ResponseEntity<Object>(produto, HttpStatus.CREATED);
 	}
 
 	@PutMapping("/{id}")
-	public ResponseEntity<MateriaPrima> alterar(@PathVariable Long id, @RequestBody MateriaPrima produto) {
-		MateriaPrima prod = repProdutos.findById(id).get();
+	public ResponseEntity<Produto> alterar(@PathVariable Long id, @RequestBody Produto produto) {
+		Produto prod = repProdutos.findById(id).get();
 		if (prod == null) {
-			return new ResponseEntity<MateriaPrima>(HttpStatus.NOT_FOUND);
+			return new ResponseEntity<Produto>(HttpStatus.NOT_FOUND);
 		}
 		repProdutos.save(produto);
-		return new ResponseEntity<MateriaPrima>(produto, HttpStatus.OK);
+		return new ResponseEntity<Produto>(produto, HttpStatus.OK);
 	}
 
 	@DeleteMapping("/{id}")
-	public ResponseEntity<MateriaPrima> excluir(@PathVariable Long id) {
-		MateriaPrima prod = repProdutos.findById(id).get();
+	public ResponseEntity<Produto> excluir(@PathVariable Long id) {
+		Produto prod = repProdutos.findById(id).get();
 		if (prod == null) {
-			return new ResponseEntity<MateriaPrima>(HttpStatus.NOT_FOUND);
+			return new ResponseEntity<Produto>(HttpStatus.NOT_FOUND);
 		}
-		return new ResponseEntity<MateriaPrima>(HttpStatus.OK);
+		return new ResponseEntity<Produto>(HttpStatus.OK);
 	}
 }

@@ -1,7 +1,6 @@
 package br.com.fapen.estoque.validation;
 
 import java.math.BigDecimal;
-import java.util.Collections;
 
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;

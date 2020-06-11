@@ -5,6 +5,7 @@
 <%@ taglib prefix="f" uri="http://www.springframework.org/tags/form" %>
 <html>
 	<%@ include file="../base/header.jsp"%>
+	
 	<body>
 		<%@ include file="../base/navbar.jsp"%>
 	

@@ -7,18 +7,33 @@
 
 <body>
 	<%@ include file="../base/navbar.jsp" %>
-	<div class="container">
+	<div class="container center aling">
 		<div>
 			<h4>Dados do Perfil</h4>
 		</div>
 		<div>
-			<ul>
+		<table>
+			 <thead>
+				<tr>
+					<th>ID:</th>
+					<td> ${registro.authority}</td>
+				</tr>
+				<tr>
+					<th>Descrição:</th>
+					<td>${registro.descricao}</td>
+				</tr>
+				</thead>
+				</table>
+				
+			<!-- <ul>
 				<li>Id: ${registro.authority}</li>
 				<li>Descrição: ${registro.descricao}</li>
 			</ul>
 		</div>
-		<div>
-			<a class="btn btn-warning" href="${s:mvcUrl('listarPerfilUrl').build()}">voltar</a>
+		<div> --> 
+		<br>
+		<br>	
+			<a class="btn btn-warning center aling  red darken-2" href="${s:mvcUrl('listarPerfilUrl').build()}">voltar</a>
 		</div>
 	</div>
 	<%@ include file="../base/scripts.jsp" %>

@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import br.com.fapen.estoque.models.MateriaPrima;
+import br.com.fapen.estoque.models.Produto;
 import br.com.fapen.estoque.repositories.MateriaPrimaRepository;
 import br.com.fapen.estoque.repositories.Paginacao;
 import br.com.fapen.estoque.validation.ProdutoValidator;
@@ -36,13 +36,13 @@ public class MateriaPrimaController {
 	}
 
 	@RequestMapping(value = "/novoM", method = RequestMethod.GET, name = "novoProdutoUrl")
-	public String formulario(MateriaPrima produto) {
+	public String formulario(Produto produto) {
 
 		return "produtos/form";
 	}
 
 	@RequestMapping(method = RequestMethod.POST, name = "salvarProdutoUrl")
-	public String salvarNoBanco(@Valid MateriaPrima produtoQueSeraSalvo, BindingResult resultadoValidacao,
+	public String salvarNoBanco(@Valid Produto produtoQueSeraSalvo, BindingResult resultadoValidacao,
 			RedirectAttributes atributos) {
 
 		if (resultadoValidacao.hasErrors()) {
@@ -59,7 +59,7 @@ public class MateriaPrimaController {
 	public ModelAndView listar(@RequestParam(defaultValue = "1") Integer pagina,
 			@RequestParam(defaultValue = "") String busca) {
 
-		Page<MateriaPrima> listaDeProdutosCadastrados = produtoRep.findByDescricaoContainingIgnoreCase(busca,
+		Page<Produto> listaDeProdutosCadastrados = produtoRep.findByDescricaoContainingIgnoreCase(busca,
 				Paginacao.getPaginacao(pagina));
 
 		ModelAndView mav = new ModelAndView("produtos/ListaProduto");
@@ -71,9 +71,9 @@ public class MateriaPrimaController {
 
 	@RequestMapping(value = "/{id}/editar", method = RequestMethod.GET, name = "alterarProdutoUrl")
 	public ModelAndView alterar(@PathVariable Long id) {
-		MateriaPrima produtoQueSeraAlterado = produtoRep.getOne(id);
+		Produto produtoQueSeraAlterado = produtoRep.getOne(id);
 
-		ModelAndView mav = new ModelAndView("produto/form");
+		ModelAndView mav = new ModelAndView("produtos/form");
 		mav.addObject("produto", produtoQueSeraAlterado);
 		return mav;
 	}
@@ -81,8 +81,8 @@ public class MateriaPrimaController {
 	@RequestMapping(value = "/{id}", name = "detalharProdutoUrl")
 	public ModelAndView detalhar(@PathVariable Long id) {
 
-		MateriaPrima produtoVindoDoBanco = produtoRep.getOne(id);
-		ModelAndView mav = new ModelAndView("produto/detalhe");
+		Produto produtoVindoDoBanco = produtoRep.getOne(id);
+		ModelAndView mav = new ModelAndView("produtos/DetalheProduto");
 		mav.addObject("produto", produtoVindoDoBanco);
 		return mav;
 	}
@@ -90,7 +90,7 @@ public class MateriaPrimaController {
 	@RequestMapping(value = "/{id}/delete", method = RequestMethod.POST, name = "excluirProdutoUrl")
 	public String excluir(@PathVariable Long id, RedirectAttributes atributos) {
 
-		MateriaPrima produtoEncontrado = produtoRep.getOne(id);
+		Produto produtoEncontrado = produtoRep.getOne(id);
 		produtoRep.delete(produtoEncontrado);
 		atributos.addFlashAttribute("mensagemStatus", "Produto excluido com sucesso !");
 		return "redirect:/produtos";
