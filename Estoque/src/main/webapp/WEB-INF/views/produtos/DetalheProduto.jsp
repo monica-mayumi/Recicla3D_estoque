@@ -46,6 +46,7 @@
 			<a class="btn-small red darken-2 " href="${s:mvcUrl('listarProdutoUrl').build()}">voltar</a>
 		</div>
 	</div>
+	</div>
 	<%@ include file="../base/scripts.jsp" %>
 </body>
 </html>

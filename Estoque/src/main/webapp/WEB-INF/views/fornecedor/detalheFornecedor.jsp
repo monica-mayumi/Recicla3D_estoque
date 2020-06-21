@@ -38,6 +38,7 @@
 				<a class="btn btn-warning red darken-2 "
 					href="${s:mvcUrl('listarFornecedorUrl').build()}">voltar</a>
 			</div>
+			</div>
 		
 		<%@ include file="../base/scripts.jsp"%>
 </body>

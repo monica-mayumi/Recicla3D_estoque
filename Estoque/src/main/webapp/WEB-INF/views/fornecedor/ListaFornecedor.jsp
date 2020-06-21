@@ -9,7 +9,7 @@
 	<body>
 		<%@ include file="../base/navbar.jsp" %>
 		
-		<div class="container ">
+		<div class="container">
 			<br>
 
 			<c:if test="${mensagemStatus != null}">
@@ -39,24 +39,24 @@
 			
 			<c:if test="${!listaPagina.isEmpty()}">
 				<div class="row">
-					<div class="responsive-table col s12">
+					<div class="responsive-table  col s12">
 						<table id="tabFornecedor">
 							<thead>
 								<tr>
-									<th>Id</th>
-									<th>Razão Social</th>
-									<th>Nome Fantasia</th>
-									<th>CNPJ</th>
+									<th class="center-align">Id</th>
+									<th class="center-align">Razão Social</th>
+									<th class="center-align">Empresa</th>
+									<th class="center-align">CNPJ</th>
 									<th class="center-align" >Ações</th>
 								</tr>
 							</thead>
 							<tbody>
 								<c:forEach items="${listaPaginada.content}" var="registro" >
 									<tr>
-										<td>${registro.id}</td>
-										<td>${registro.razaoSocial}</td>
-										<td>${registro.nomeFantasia}</td>
-										<td class="fmt-cnpj">${registro.cnpj}</td>
+										<td class="center-align">${registro.id}</td>
+										<td class="center-align">${registro.razaoSocial}</td>
+										<td class="center-align">${registro.nomeFantasia}</td>
+										<td class="fmt-cnpj center-align">${registro.cnpj}</td>
 										<td class="center-align">
 											<a class="btn-small deep-purple darken-2" title="alterar" href="${s:mvcUrl('alterarFornecedorUrl').arg(0, registro.id).build()}"><i class="material-icons">edit</i></a>
 											<a class="btn-small #303f9f indigo darken-2" title="detalhes"  href="${s:mvcUrl('detalharFornecedorUrl').arg(0, registro.id).build()}"><i class="material-icons">more_horiz</i></a>

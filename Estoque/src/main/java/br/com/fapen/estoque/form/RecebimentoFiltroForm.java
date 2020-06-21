@@ -7,12 +7,22 @@ public class RecebimentoFiltroForm {
 	private LocalDate dataFinal;
 	private String tipoFiltro;
 	private Integer pagina;
+	private String comboOpcao;
+	public String getComboOpcao() {
+		return comboOpcao;
+	}
+
+	public void setComboOpcao(String comboOpcao) {
+		this.comboOpcao = comboOpcao;
+	}
+
 	private boolean novoFiltro;
 
 	public RecebimentoFiltroForm() {
 		this.tipoFiltro = "";
 		this.pagina = 1;
 		this.novoFiltro = false;
+		this.comboOpcao = "";
 		this.dataInicial = LocalDate.now().minusDays(10);
 		this.dataFinal = LocalDate.now();
 	}

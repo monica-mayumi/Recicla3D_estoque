@@ -40,7 +40,7 @@
 			
 			<c:if test="${!listaPagina.isEmpty()}">
 				<div class="row">
-					<div class="responsive-table col s12">
+					<div class="responsive-table centered col s12">
 						<table id="tabProdutos">
 							<thead>
 								<tr>
@@ -63,7 +63,7 @@
 										<td><fmt:formatNumber value="${registro.precoVenda}" type="currency"/></td>	
 										<td><fmt:formatDate value="${dataModificada}" pattern="dd/MM/yyyy" /></td>
 										<td>${registro.saldoAtual}</td>																			
-										<td class="center-align" >
+										<td>
 											<a class="btn-small deep-purple darken-2" title="alterar" href="${s:mvcUrl('alterarProdutoUrl').arg(0, registro.id).build()}"><i class="material-icons">edit</i></a>
 											<a class="btn-small #303f9f indigo darken-2" title="detalhes"  href="${s:mvcUrl('detalharProdutoUrl').arg(0, registro.id).build()}"><i class="material-icons">more_horiz</i></a>
 											<button class="btn-small #b71c1c red darken-4 modal-excluir" title="excluir" type="button" data-target="modalExcluir" data-descr="${registro.descricao}"  >

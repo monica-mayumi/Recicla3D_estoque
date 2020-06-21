@@ -99,7 +99,7 @@
 			
 			<c:if test="${!listaPagina.isEmpty()}">
 				<div class="row">
-					<div class="responsive-table col s12">
+					<div class="responsive-table col s12 center-align">
 						<table>
 							<thead>
 								<tr>
@@ -116,7 +116,7 @@
 									<tr>
 										<fmt:parseDate value="${registro.dataEntrega}" pattern="yyyy-MM-dd" var="dataModificada" type="date" />
 										<td>${registro.id}</td>
-										<td>${registro.fornecedor.razaoSocial}</td>
+										<td class="center-align">${registro.fornecedor.razaoSocial}</td>
 										<td><fmt:formatDate value="${dataModificada}" pattern="dd/MM/yyyy" /></td>
 										<!-- <td>${registro.condicaoPagamento.displayValue}</td> -->
 										<td><fmt:formatNumber value="${registro.valorTotal}" type="currency"/></td>
@@ -124,7 +124,7 @@
 										<td class="center-align">
 											<a class="btn-small deep-purple darken-2" title="alterar" href="${s:mvcUrl('alterarPedidoCompraUrl').arg(0, registro.id).build()}"><i class="material-icons">edit</i></a>
 											<a class="btn-small #303f9f indigo darken-2" title="detalhes" href="${s:mvcUrl('detalharPedidoUrl').arg(0, registro.id).build()}"><i class="material-icons">more_horiz</i></a>
-											<button class="btn-small #b71c1c red darken-4 modal-excluir" title="excluir" type="button" data-target="modalExcluir" data-descr="${registro.id}"  >
+											<button class="btn-small  red darken-4 modal-excluir" title="excluir" type="button" data-target="modalExcluir" data-descr="${registro.id}"  >
 												<i class="material-icons">delete</i>
 												<f:form action="${s:mvcUrl('excluirPedidoCompraUrl').arg(0, registro.id).build()}" method="post">
 												</f:form>

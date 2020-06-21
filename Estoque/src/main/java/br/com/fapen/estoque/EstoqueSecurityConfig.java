@@ -40,7 +40,7 @@ public class EstoqueSecurityConfig extends WebSecurityConfigurerAdapter{
 			.antMatchers("/recuperarSenha/**").permitAll()
 			.antMatchers("/css/**").permitAll()
 			.antMatchers("/js/**").permitAll()
-			.antMatchers("/img/**").permitAll()					
+			.antMatchers("/img/**").permitAll()
 			.antMatchers(HttpMethod.POST, "/**/delete").hasAnyRole("ADMIN", "GERENTE")
 			.antMatchers("/usuarios/**").hasRole("ADMIN")
 			.anyRequest().authenticated()

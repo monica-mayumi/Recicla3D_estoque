@@ -8,12 +8,18 @@
 <meta charset="ISO-8859-1">
 	<%@ include file="../base/header.jsp"%>
 	<body>
+	<%@ include file="../base/navbar.jsp" %>
 		<div class="container"> 
 			<div class="row">
 				<div class="col s6 offset-s3">
+					<!--<c:if test="${param != null}">
+						<p>Login ou senha invalidos</p>					
+					</c:if>-->
+					
 					<c:if test="${msgSenha != null}">
 						<p>${msgSenha}</p>					
 					</c:if>
+					
 					
 					<div class="card">
 						<div class="card-content">

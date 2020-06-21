@@ -49,7 +49,7 @@
 								<div class="input-field col s12">
 									<f:select path="pedido" cssClass="validate">
 										<f:option value="">Selecione</f:option>
-										<f:options items="${listaPedidos }" itemLabel="texto" />
+										<f:options items="${listaPedidos}" itemLabel="texto" />
 									</f:select>
 									<label for="pedido">Pedido de Compra</label>
 									<f:errors path="pedido" cssClass="helper-text" />
@@ -98,7 +98,7 @@
 												</c:forEach>
 											</tbody>
 										</table>
-
+</div>
 									</div>
 								</div>
 							</div>
@@ -111,9 +111,11 @@
 							class="btn-small red darken-2">voltar</a>
 					</div>
 				</div>
-			</div>
-	</div>
-	</f:form>
+		</f:form>	
+		</div>
+	
+	
+	
 	<%@ include file="../base/scripts.jsp"%>
 	<script type="text/javascript">
 	//Funcao para atualizar a tabela 

@@ -6,7 +6,11 @@
     <script src="/js/materialize.min.js"></script>
     <script src="/js/main.js"></script>
     <script src="/js/modalExcluir.js"></script>
-    <footer class="footer" style="align:center">
+    <script src="/js/modalEstornar.js"></script>
+    <script src="/js/controleFiltro.js"></script>
+
+    <div>
+    
      <footer class="page-footer#006064 cyan darken-4">
           <div class="container">
             <div class="row">
@@ -17,7 +21,7 @@
               <div class="col l4 offset-l2 s12">
                 <h5 class="white-text">Menu</h5>
                 <ul>
-                  <li><a class="grey-text text-lighten-3" href="#!">https://fapen.edu.br/</a></li>
+                  <li><a class="grey-text text-lighten-3" href="https://fapen.edu.br/">https://fapen.edu.br/</a></li>
                   <li><a class="grey-text text-lighten-2" href="contato"><i class="material-icons left">contact_mail</i>Fale Conosco</a></li>
                   <li><a class="grey-text text-lighten-3" href="produto">Produtos</a></li>
                   
@@ -27,12 +31,12 @@
           </div>
           <div class="footer-copyright">
            
-             <div class="
-center"> <img src="css/img/fapen.png">  </div>
+             <div class="center"> <img src="css/img/fapen.png">  </div>
               <div class="container">
             © 2020 Copyright Text
             
              </div>
           </div>
-        </footer>        
-    </footer>
+          </footer>       
+    
+    </div>
