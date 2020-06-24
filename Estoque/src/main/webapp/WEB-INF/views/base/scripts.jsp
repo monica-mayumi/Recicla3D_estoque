@@ -31,7 +31,7 @@
           </div>
           <div class="footer-copyright">
            
-             <div class="center"> <img src="css/img/fapen.png">  </div>
+             <div class="center"> <img src="/css/img/fapen.png">  </div>
               <div class="container">
             © 2020 Copyright Text
             

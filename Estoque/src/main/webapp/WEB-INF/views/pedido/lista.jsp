@@ -6,7 +6,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <html>
 	<%@ include file="../base/header.jsp" %>
-	<!-- <link href="../css/fundo.css" rel="stylesheet" type="text/css"> -->
+	
 	<body>
 		<%@ include file="../base/navbar.jsp" %>
 		
@@ -20,11 +20,11 @@
 			</c:if>
 			
 			<div class="row">
-				<div class="input-field col s6 center-align">
-					<h5 >Pedidos de Compra</h5>
+				<div class="input-field col s6">
+					<h5>Pedidos de Compra</h5>
 				</div>
-				<div class="input-field col s3 offset-s3 ">
-					<a class="btn-floating btn-large waves-effect waves-light #006064 cyan darken-4 right" title="novo" href="${s:mvcUrl('novoPedidoCompraUrl').build()}" >
+				<div class="input-field col s3 offset-s3">
+					<a class="btn-floating btn-large waves-effect waves-light cyan darken-4 right" title="novo" href="${s:mvcUrl('novoPedidoCompraUrl').build()}" >
 						<i class="material-icons">add</i>
 					</a>
 				</div>
@@ -96,18 +96,18 @@
 				</div>			
 			</div>		
 			
-			
 			<c:if test="${!listaPagina.isEmpty()}">
 				<div class="row">
-					<div class="responsive-table col s12 center-align">
+					<div class="responsive-table col s12">
 						<table>
 							<thead>
 								<tr>
-									<th class="center-align">Nº</th>
-									<th class="center-align">Fornecedor</th>
-									<th class="center-align">Entrega</th>
-									<th class="center-align">Valor</th>
-									<th class="center-align">Status</th>
+									<th>Nº</th>
+									<th>Fornecedor</th>
+									<th>Entrega</th>
+									<th>Condição Pagto.</th>
+									<th>Valor</th>
+									<th>Status</th>
 									<th class="center-align">Ações</th>
 								</tr>
 							</thead>
@@ -116,23 +116,22 @@
 									<tr>
 										<fmt:parseDate value="${registro.dataEntrega}" pattern="yyyy-MM-dd" var="dataModificada" type="date" />
 										<td>${registro.id}</td>
-										<td class="center-align">${registro.fornecedor.razaoSocial}</td>
+										<td>${registro.fornecedor.razaoSocial}</td>
 										<td><fmt:formatDate value="${dataModificada}" pattern="dd/MM/yyyy" /></td>
-										<!-- <td>${registro.condicaoPagamento.displayValue}</td> -->
+										<td>${registro.condicaoPagamento.displayValue}</td>
 										<td><fmt:formatNumber value="${registro.valorTotal}" type="currency"/></td>
 										<td>${registro.status.displayValue}</td>
 										<td class="center-align">
 											<a class="btn-small deep-purple darken-2" title="alterar" href="${s:mvcUrl('alterarPedidoCompraUrl').arg(0, registro.id).build()}"><i class="material-icons">edit</i></a>
-											<a class="btn-small #303f9f indigo darken-2" title="detalhes" href="${s:mvcUrl('detalharPedidoUrl').arg(0, registro.id).build()}"><i class="material-icons">more_horiz</i></a>
-											<button class="btn-small  red darken-4 modal-excluir" title="excluir" type="button" data-target="modalExcluir" data-descr="${registro.id}"  >
+											<a class="btn-small blue" title="detalhes" href="${s:mvcUrl('detalharPedidoUrl').arg(0, registro.id).build()}"><i class="material-icons">more_horiz</i></a>
+											<button class="btn-small red darken-4 modal-excluir" title="excluir" type="button" data-target="modalExcluir" data-descr="${registro.id}"  >
 												<i class="material-icons">delete</i>
 												<f:form action="${s:mvcUrl('excluirPedidoCompraUrl').arg(0, registro.id).build()}" method="post">
 												</f:form>
 											</button>
-											<a href="${s:mvcUrl('geraPdfPedidoUrl').arg(0, registro.id).build()}" target="__blank"  class="btn-small pink darken-4" title="imprimir" type="button">
+											<a href="${s:mvcUrl('geraPdfPedidoUrl').arg(0, registro.id).build()}" target="__blank"  class="btn-small  pink darken-4" title="imprimir" type="button">
 												<i class="material-icons">print</i>
 											</a>
-											
 										</td>
 									</tr>			
 								</c:forEach>		

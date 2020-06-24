@@ -44,7 +44,7 @@
 
 					<li><a class="dropdown-trigger valign-wrapper" href="#!"
 						data-target="dropUsuario"> <c:choose>
-								<c:when test="${user.caminhoFoto != null}">
+								<c:when test="">
 									<img class="img-perfil"
 										src="${pageContext.request.contextPath}/${user.caminhoFoto}" />
 								</c:when>

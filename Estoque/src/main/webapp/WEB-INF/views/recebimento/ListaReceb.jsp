@@ -33,70 +33,56 @@
 		</div>
 
 		<div class="row">
-			<div class="col s12">
-
-
-				<div class="collapsible-body"></div>
-				<f:form method="GET" modelAttribute="recebimentoFiltroForm"
-					id="formFiltro">
-					<f:hidden path="pagina" />
-					<f:hidden path="novoFiltro" />
-
-					<div class="row">
-					
-						<div id="LinhaSelect" class="input-field left col s12">
-
-							<label class="active" for="comboOpcao"></label>
-							<f:select path="comboOpcao" onchange="myFunction(this.value)">
-								<f:option value="" disabled="true">Escolha a opção</f:option>
-								<f:option value="RS">Razão Social   </f:option>
-								<f:option value="DT">Data de Entrega</f:option>
-								<f:option value="IN">Data e Razão Social</f:option>
-							</f:select>
-							<!--  <label>Materialize Select</label> -->
-
-						</div>
-					</div>
-
-					<div id="linhaRS" class="row">
-					
-						<div class="input-field col s6">
-							<label class="active" for="razaoSocial">Razão Social</label>
-							<f:input path="razaoSocial" cssClass="validate" />
-							<div class="col s12 ">
-					<button class="btn-small right" type="button" id="btnFiltro">Pesquisar</button>
-				</div>
-						</div>
-					</div>
-
-
-					<div id="linhaDTE" class="row">
-
-
-						<div class="input-field col s4">
-							<label class="active" for="dataInicial">Recebimento
-								(Inicial)</label>
-							<f:input path="dataInicial" cssClass="validate datepicker" />
-						</div>
-						<div class="input-field col s4">
-							<label class="active" for="dataFinal">Recebimento (Final)</label>
-							<f:input path="dataFinal" cssClass="validate datepicker" />
-                    <div class="col s12 ">
-					<button class="btn-small right" type="button" id="btnFiltro">Pesquisar</button>
-				</div>
-						</div>
-					</div>
-
-
-
-
-				</f:form>
-
-			</div>
-
-
-		</div>
-	
+				<div class="col s12">
+					<ul class="collapsible">
+						<li>
+							<div class="collapsible-header">
+								<i class="material-icons">filter_list</i>Filtros
+							</div>
+							<div class="collapsible-body">
+								<f:form method="GET" modelAttribute="recebimentoFiltroForm" id="formFiltro">
+									<f:hidden path="pagina"/>
+									<f:hidden path="novoFiltro"/>
+									
+									<div class="row">
+										<div class="input-field col s4">
+											<label>
+												<f:radiobutton path="tipoFiltro" value="RS" />
+												<span>Razão Social</span>
+											</label>
+										</div>	
+										<div class="input-field col s8">
+											<label class="active" for="razaoSocial">Razão Social</label>
+											<f:input path="razaoSocial" cssClass="validate"/>
+										</div>
+									</div>
+									<div class="row">
+										<div class="input-field col s4">
+											<label>
+												<f:radiobutton path="tipoFiltro" value="DT" />
+												<span>Data de Entrega</span>
+											</label>
+										</div>	
+										<div class="input-field col s4">
+											<label class="active" for="dataInicial">Recebimento (Inicial)</label>
+											<f:input path="dataInicial" cssClass="validate datepicker"/>
+										</div>	
+										<div class="input-field col s4">
+											<label class="active" for="dataFinal">Recebimento (Final)</label>
+											<f:input path="dataFinal" cssClass="validate datepicker"/>
+										</div>	
+									</div>
+									<div class="row">
+										<div class="col s12">
+											<button class="btn-small right" type="button" id="btnFiltro">Pesquisar</button>
+										</div>
+									</div>
+								</f:form>
+							</div>
+						</li>
+					</ul>				
+				</div>			
+			</div>		
 
 	<c:if test="${!listaPagina.isEmpty()}">
 		<div class="row">
